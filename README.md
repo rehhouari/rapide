@@ -26,10 +26,10 @@ You get the following out of the box:
 Simply click the **Use this template** button of this repo, and follow the [Github Guide](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template).
 
 ### Installing
-
-Dev server : `npm run dev`
-Build for production : `npm run build`
-Serve the production build: `npm run serve`
+`npm install` to install dependencies then:
+-	Dev server : `npm run dev`
+-	Build for production : `npm run build`
+-	Serve the production build: `npm run serve`
 
 ## Deployment
 
