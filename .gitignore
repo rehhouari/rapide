@@ -1,0 +1,11 @@
+node_modules
+tmp
+.env.*
+.node_repl_history
+logs
+*.log
+.DS_Store
+.vscode/
+.idea/
+dist/
+*.tar

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Meta tags -->
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="{description}" />
+		<meta name="author" content="{author}" />
+		<meta name="generator" content="PWA Template" />
+		<!-- Social meta tags -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:site" content="{social_username}" />
+		<meta name="twitter:title" content="{social_title}" />
+		<meta name="twitter:description" content="{social_description}" />
+		<meta name="twitter:image" content="{social_image}" />
+		<meta
+			property="og:image"
+			content="{social_image}"
+			itemprop="thumbnailUrl"
+		/>
+		<meta property="og:title" content="{social_title}" />
+		<meta property="og:url" content="{social_url}" />
+		<meta property="og:site_name" content="{social_site_name}" />
+		<meta property="og:description" content="{social_description}" />
+		<meta name="theme-color" content="#ffffff" />
+
+		<!-- Add to homescreen for Chrome on Android.
+			Fallback for manifest.json -->
+		<meta name="mobile-web-app-capable" content="yes" />
+		<meta name="application-name" content="{app_name}" />
+
+		<!-- Add to homescreen for Safari on iOS -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+		<meta name="apple-mobile-web-app-title" content="{app_name}" />
+
+		<!-- Favicons -->
+		<link
+			rel="icon"
+			href="./images/icons/favicon-32x32.png"
+			sizes="32x32"
+			type="image/png"
+		/>
+		<link
+			rel="icon"
+			href="./images/icons/favicon-16x16.png"
+			sizes="16x16"
+			type="image/png"
+		/>
+		<link
+			rel="mask-icon"
+			href="./images/icons/safari-pinned-tab.svg"
+			color="#ffffff"
+		/>
+		<link rel="icon" href="./images/icons/favicon.ico" />
+
+		<!-- Apple Homescreen icons -->
+		<link rel="apple-touch-icon" href="./images/icons/icon-48x48.png" />
+		<link
+			rel="apple-touch-icon"
+			sizes="72x72"
+			href="./images/icons/icon-72x72.png"
+		/>
+		<link
+			rel="apple-touch-icon"
+			sizes="96x96"
+			href="./images/icons/icon-96x96.png"
+		/>
+		<link
+			rel="apple-touch-icon"
+			sizes="144x144"
+			href="./images/icons/icon-144x144.png"
+		/>
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="./images/icons/apple-touch-icon.png"
+		/>
+		<link
+			rel="apple-touch-icon"
+			sizes="192x192"
+			href="./images/icons/icon-192x192.png"
+		/>
+
+		<!-- Tile icon for Windows 8 (144x144 + tile color) -->
+		<meta
+			name="msapplication-TileImage"
+			content="./images/icons/icon-144x144.png"
+		/>
+		<meta name="msapplication-TileColor" content="#ffffff" />
+		<meta name="msapplication-tap-highlight" content="no" />
+
+		<title>PWA Template</title>
+		<link rel="canonical" href="http://localhost:5500" />
+
+		<!-- PWA -->
+		<link rel="manifest" href="./manifest.webmanifest" />
+		<script async src="https://cdn.jsdelivr.net/npm/pwacompat" crossorigin="anonymous"></script>
+		<script>
+			// TODO: set to true in development to disable service worker
+			let dev = true;
+			if ('serviceWorker' in navigator && !dev) {
+				navigator.serviceWorker
+					.register('/sw.js')
+					.then(function (registration) {
+						console.log(
+							'ServiceWorker registration successful with scope: ',
+							registration.scope
+						);
+					})
+					.catch(function (err) {
+						console.log('ServiceWorker registration failed: ', err);
+					});
+			}
+		</script>
+
+		<!-- Inter Font -->
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="https://rsms.me/inter/inter.css "
+		/>
+		<!-- Custom styles -->
+	</head>
+
+	<body>
+		<div class="flex flex-col h-screen bg-gray-600 w-screen select-none">
+			<nav
+				class="bg-white flex space-x-2 bg-opacity-30 h-12 w-full px-6 items-center"
+			>
+				<a
+					class="flex flex-grow text-white px-4 items-center justify-center no-underline"
+					href="/"
+				>
+					<span class="font-bold pb-1 text-4xl hover:animate-pulse"
+						>App</span
+					>
+				</a>
+			</nav>
+			<main
+				class="flex flex-grow items-start"
+				id="content"
+			></main>
+		</div>
+		<!-- Main app module -->
+		<script type="module" src="./js/core/app.js"></script>
+		<script src="https://cdn.jsdelivr.net/gh/ryangjchandler/spruce@2.7.0/dist/spruce.umd.min.js"></script>
+	</body>
+</html>

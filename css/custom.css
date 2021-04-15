@@ -1,0 +1,36 @@
+html {
+	font-family: 'Inter-var', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "PT Sans", "Open Sans", "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	/*font-feature-settings: "cv02", "cv03", "cv04", "cv05", "cv08", "cv09", "cv10", "cv11", "calt", "kern";*/
+}
+
+[x-cloak] * {
+	opacity: 0;
+}
+
+[x-cloak] {
+	opacity: 50%;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(250,250,250, .5);
+/*  border-radius: 15px; */
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: rgba(250,250,250, 0.8);
+}
+
+.backdrop {
+	filter: blur(4px) opacity(0.79);
+	-webkit-filter: blur(4px) opacity(0.79);
+}
+
+input, button, submit { border:none; } 
+
+.btn {
+	@apply font-bold py-2 px-4 rounded;
+  }

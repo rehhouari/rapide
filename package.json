@@ -1,0 +1,22 @@
+{
+	"name": "vite-alpine-pwa",
+	"version": "0.0.0",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"serve": "vite preview"
+	},
+	"devDependencies": {
+		"vite": "^2.1.5",
+		"vite-plugin-windicss": "^0.14.2",
+		"windicss": "^2.5.14"
+	},
+	"dependencies": {
+		"@ryangjchandler/alpine-clipboard": "^1.0.0",
+		"@ryangjchandler/alpine-toggle": "^0.1.0",
+		"@ryangjchandler/spruce": "^2.6.3",
+		"@ryangjchandler/x-else": "^0.0.2",
+		"alpine-magic-helpers": "^1.1.0",
+		"alpinejs": "^2.8.2"
+	}
+}
