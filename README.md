@@ -18,7 +18,7 @@ For personal use but I may update with usage info later
 You get the following out of the box:
 -	Vite.js dev server with WindiCSS configured.
 -   Central application store, using Spruce.
--   Routing with Page.js, Auth placeholder with example of using with routes.
+-   Routing with Page.js, Auth placeholder.
 -   Component logic split in separate files.
 
 ## Getting Started
