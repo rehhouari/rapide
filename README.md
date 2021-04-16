@@ -27,7 +27,7 @@ Simply click the **Use this template** button of this repo, and follow the [Gith
 
 ### Installing
 `npm install` to install dependencies then:
--	Dev server : `npm run dev`
+-	Start dev server : `npm run dev`
 -	Build for production : `npm run build`
 -	Serve the production build: `npm run serve`
 
@@ -38,6 +38,7 @@ Simply click the **Use this template** button of this repo, and follow the [Gith
 - Edit [js/core/routes.js](https://github.com/rehhouari/vite-alpine-pwa/tree/main/js/core/routes.js) with your own routes, views are at [public/views/](https://github.com/rehhouari/vite-alpine-pwa/tree/main/public/views).
 - Create Alpine.js components in [js/components]((https://github.com/rehhouari/vite-alpine-pwa/blob/main/js/components) following this [template file](https://github.com/rehhouari/vite-alpine-pwa/blob/main/js/components/component.js).
 - Import dependencies in the main module [js/core/app.js](https://github.com/rehhouari/vite-alpine-pwa/tree/main/js/core/app.js) and add components you're using [here](https://github.com/rehhouari/vite-alpine-pwa/tree/main/public/views).
+- Edit [windicss.config.js](https://github.com/rehhouari/vite-alpine-pwa/tree/main/windicss.config.js) with your own [WindiCSS configuration](https://windicss.org/guide/configuration.html)
 
 ## Deployment
 
