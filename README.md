@@ -2,7 +2,7 @@
 
 > An opinionated  PWA template.
 
-WIP, going to change some things probably. But it's usable ^^ (follow the [usage guide](/#Usage)).
+WIP, going to change some things probably. But it's usable ^^ (follow the [usage guide](#usage)).
 
 > Based on [Alpine Experiments](https://github.com/ryangjchandler/alpine-experiments) from [Ryan Chandler](https://github.com/ryangjchandler) and [TASH](https://github.com/go4cas/tash-starter-template)!
 
