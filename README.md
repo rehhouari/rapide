@@ -43,3 +43,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 -   [Ryan Chandler](https://github.com/ryangjchandler)
 -   [go4as](https://github.com/go4cas/tash-starter-template)
+-   [Anthony Fu](https://github.com/antfu)
