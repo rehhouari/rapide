@@ -2,7 +2,7 @@
 
 > An opinionated  PWA template.
 
-For personal use but I may update with usage info later
+WIP, going to change some things probably. But it's usable ^^ (follow the [usage guide](/#Usage)).
 
 > Based on [Alpine Experiments](https://github.com/ryangjchandler/alpine-experiments) from [Ryan Chandler](https://github.com/ryangjchandler) and [TASH](https://github.com/go4cas/tash-starter-template)!
 
@@ -30,6 +30,14 @@ Simply click the **Use this template** button of this repo, and follow the [Gith
 -	Dev server : `npm run dev`
 -	Build for production : `npm run build`
 -	Serve the production build: `npm run serve`
+
+### Usage
+- Editng [index.html](https://github.com/rehhouari/vite-alpine-pwa/blob/main/index.html) by replacing items in curly braces `{}`.
+- Service worker is disabled by default for developement, toggle it [here](https://github.com/rehhouari/vite-alpine-pwa/blob/main/index.html#L102)
+- Edit [manifest.webmanifest](https://github.com/rehhouari/vite-alpine-pwa/blob/main/public/manifest.webmanifest), [sw.js](https://github.com/rehhouari/vite-alpine-pwa/blob/main/public/sw.js) with your app info.
+- Edit [js/core/routes.js](https://github.com/rehhouari/vite-alpine-pwa/tree/main/js/core/routes.js) with your own routes, views are at [public/views/](https://github.com/rehhouari/vite-alpine-pwa/tree/main/public/views).
+- Create Alpine.js components in [js/components]((https://github.com/rehhouari/vite-alpine-pwa/blob/main/js/components) following this [template file](https://github.com/rehhouari/vite-alpine-pwa/blob/main/js/components/component.js).
+- Import dependencies in the main module [js/core/app.js](https://github.com/rehhouari/vite-alpine-pwa/tree/main/js/core/app.js) and add components you're using [here](https://github.com/rehhouari/vite-alpine-pwa/tree/main/public/views).
 
 ## Deployment
 
