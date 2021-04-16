@@ -9,7 +9,7 @@ WIP, going to change some things probably. But it's usable ^^ (follow the [usage
 ## What is included?
 
 -   [Vite.js](https://vitejs.dev) for fast dev server & production builds.
--   [WindiCSS](https://windicss.org) for compoent styling.
+-   [WindiCSS](https://windicss.org) for component styling.
 -   [Alpine.js](https://github.com/alpinejs/alpine) for reactivity and component logic.
 -   [Spruce](https://github.com/ryangjchandler/spruce) for application state management.
 -   [Alpine Magic Helpers](https://github.com/KevinBatdorf/alpine-magic-helpers), [$clipboard](https://github.com/ryangjchandler/alpine-clipboard), [$toggle](https://github.com/ryangjchandler/alpine-toggle), [x-else](https://github.com/ryangjchandler/x-else) for additinal sugar.
