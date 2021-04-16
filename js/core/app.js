@@ -16,6 +16,7 @@ const components = [...document.querySelectorAll("[x-data$='()']")].map(
 
 */
 
+// Add the name of the components you're using here
 const components = [];
 
 (async () => {
