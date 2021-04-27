@@ -1,1 +1,0 @@
-import{b as r}from"./index.d49ab12a.js";import"./vendor.419aaf22.js";var e=r({},{text(){return"/hello"==this.$router.route?"Hello, what is your name?":`Hello, ${this.$router.props.name}!`},name(){return"/hello"==this.$router.route?"":this.$router.props.name}});export default e;
