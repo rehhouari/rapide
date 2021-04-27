@@ -9,3 +9,4 @@ logs
 .idea/
 dist/
 *.tar
+github-pages/
