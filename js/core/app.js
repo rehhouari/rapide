@@ -1,30 +1,32 @@
 import { registerComponents } from './utils.js';
-import './store.js';
-import './routes.js';
+import { registerSW } from 'virtual:pwa-register';
 import 'virtual:windi.css';
+import './store.js';
 import '../../css/custom.css';
 
-/*
-
-// Load only used components, don't work if you use client-side routing
-// and add components dynamically
-const components = [...document.querySelectorAll("[x-data$='()']")].map(
-	(component) => {
-		return component.getAttribute('x-data').slice(0, -2);
-	}
-);
-
-*/
+// see vite-plugin-pwa documentation
+const updateSW = registerSW({
+	onNeedRefresh() {
+		// show a prompt to user
+		console.log('need refreshing');
+	},
+	onOfflineReady() {
+		// show a ready to work offline to user
+		console.log('offline ready');
+	},
+});
 
 // Add the name of the components you're using here
-const components = [];
+// TODO:  automatically include the router component using the vite plugin
+const components = ['hello', 'router'];
 
 (async () => {
 	await registerComponents(components);
 
 	await import('alpine-magic-helpers');
+	await import('@ryangjchandler/alpine-clipboard');
 	await import('@ryangjchandler/alpine-toggle');
 	await import('@ryangjchandler/x-else');
-	await import('@ryangjchandler/alpine-clipboard');
+	await import('alpinejs-router');
 	await import('alpinejs');
 })();

@@ -1,3 +1,4 @@
+// component template!
 import { buildComponent } from '../core/utils.js'
 
 const data = {}
