@@ -97,13 +97,13 @@
 
 	<body>
 		<div
-			class="fixed w-screen h-screen bg-gray-800 z-10"
+			class="fixed w-screen h-screen inset-0 flex flex-col items-center justify-center bg-gray-800 z-10"
 			x-data="{show: true}"
 			x-show="show"
-			@loadend.window="show=false"
 			@loadstart.window="show=true"
 		>
-			loading
+			<img src="./images/alpine.png" alt="" width="80" />
+			<p class="prose-lg text-white">Loading...</p>
 		</div>
 		<div class="flex flex-col max-w-full h-screen bg-gray-50 text-gray-800">
 			<nav
