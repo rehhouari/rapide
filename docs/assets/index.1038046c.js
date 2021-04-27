@@ -1,0 +1,1 @@
+const i={start(){if(!window.Alpine)throw new Error("Alpine is required for `alpine-clipboard` to work.");Alpine.addMagicProperty("clipboard",(()=>function(i){return"function"==typeof i&&(i=i()),window.navigator.clipboard.writeText(i)}))}},n=window.deferLoadingAlpine||(i=>i());window.deferLoadingAlpine=function(o){i.start(),n(o)};export default i;
