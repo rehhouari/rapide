@@ -7,4 +7,5 @@ logs
 .DS_Store
 .vscode/
 .idea/
+dist/
 *.tar
