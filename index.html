@@ -100,6 +100,7 @@
 			class="fixed w-screen h-screen inset-0 flex flex-col items-center justify-center bg-gray-800 z-10"
 			x-data="{show: true}"
 			x-show="show"
+			@loadend.window="show=false"
 			@loadstart.window="show=true"
 		>
 			<img src="./images/alpine.png" alt="" width="80" />
