@@ -20,6 +20,8 @@
 		"@ryangjchandler/x-else": "^0.0.2",
 		"alpine-magic-helpers": "^1.1.0",
 		"alpinejs": "^2.8.2",
-		"alpinejs-router": "^0.0.8"
+		"alpinejs-router": "^0.0.8",
+		"pinecone-router": "^0.1.0",
+		"pinecone-router-middleware-views": "*"
 	}
 }

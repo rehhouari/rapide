@@ -7,7 +7,7 @@ const methods = {
 		// can be used for authorization/authentication
 		// this will redirect before rendering the page
 		if (ctx.props.name != null && ctx.props.name == 'home') {
-			return ctx.go('/');
+			return ctx.redirect('/');
 		}
 	}
 }

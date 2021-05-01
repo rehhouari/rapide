@@ -100,8 +100,8 @@
 			class="fixed w-screen h-screen inset-0 flex flex-col items-center justify-center bg-gray-800 z-10"
 			x-data="{show: true}"
 			x-show="show"
-			@loadend.window="show=false"
-			@loadstart.window="show=true"
+			@pinecone-end.window="show=false"
+			@pinecone-start.window="show=true"
 		>
 			<img src="/images/alpine.png" alt="" width="80" />
 			<p class="prose-lg text-white">Loading...</p>
@@ -119,7 +119,7 @@
 					<img src="/images/alpine.png" alt="" width="80" />
 				</a>
 			</nav>
-			<div x-data="router()" x-router x-views="#content" x-static>
+			<router x-data="router()" x-router x-views="#content">
 				<template x-route="/" x-view="/views/home.html"></template>
 				<template
 					x-route="/hello"
@@ -138,7 +138,7 @@
 					x-route="notfound"
 					x-view="/views/notfound.html"
 				></template>
-			</div>
+			</router>
 			<main class="py-4 mx-2 max-w-full" id="content"></main>
 		</div>
 		<!-- Main app module -->
