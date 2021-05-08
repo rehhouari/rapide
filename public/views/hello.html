@@ -5,16 +5,15 @@
 	x-data="hello()"
 	class="card w-80 max-w-full shadow-sm rounded-3xl text-white bg-gray-800 text-center items-center mx-auto mt-5"
 >
-	<p x-text="text()" class="prose-xl font-bold"></p>
+	<div class="prose-lg font-bold">Hello, <span x-text="$router.params?.name ?? 'What is your name?'"></span></div>
 	<input
 		type="text"
 		name=""
 		id=""
-		@keydown.arrow-left="console.log('arr')"
 		placeholder="Write your name"
 		class="text-gray-800 rounded-2xl p-4"
-		:value="name()"
-		@change="PineconeRouter.navigate('/hello/'+$refs.input.value)"
+		:value="$router.params.name ?? ''"
+		@keydown.enter="$router.redirect('/hello/'+$refs.input.value)"
 		x-ref="input"
 		autofocus
 	/>

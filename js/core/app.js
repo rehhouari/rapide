@@ -3,6 +3,7 @@ import { registerSW } from 'virtual:pwa-register';
 import 'virtual:windi.css';
 import './store.js';
 import '../../css/custom.css';
+import nProgress from 'nprogress';
 
 // see vite-plugin-pwa documentation
 const updateSW = registerSW({
@@ -27,8 +28,11 @@ const components = ['hello', 'router'];
 	await import('@ryangjchandler/alpine-clipboard');
 	await import('@ryangjchandler/alpine-toggle');
 	await import('@ryangjchandler/x-else');
-	//await import('pinecone-router-middleware-views');
-	await import('../../../../alpinejs/pinecone-router/middleware-views');
+	await import('pinecone-router-middleware-views');
 	await import('pinecone-router');
 	await import('alpinejs');
+	await import('nprogress');
 })();
+
+window.addEventListener('pinecone-start', ()=>nProgress.start())
+window.addEventListener('pinecone-end', ()=>nProgress.done())

@@ -15,7 +15,7 @@ For use on a project, will update with docs if it turns out good.
 -   [Alpine.js](https://github.com/alpinejs/alpine) for reactivity and component logic.
 -   [Spruce](https://github.com/ryangjchandler/spruce) for application state management.
 -   [Alpine Magic Helpers](https://github.com/KevinBatdorf/alpine-magic-helpers), [$clipboard](https://github.com/ryangjchandler/alpine-clipboard), [$toggle](https://github.com/ryangjchandler/alpine-toggle), [x-else](https://github.com/ryangjchandler/x-else) for additinal sugar.
--   [Pinecone Router](https://github.com/rehhouari/alpine-router) for routing.
+-   [Pinecone Router](https://github.com/pinecone-router/router) for routing.
 
 You get the following out of the box:
 

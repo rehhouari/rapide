@@ -1,15 +1,24 @@
-import { buildComponent } from '../core/utils.js'
+import { buildComponent } from '../core/utils.js';
 
-const data = {}
+const data = {
+	settings: {
+		middlewares: {
+			views: {
+				enable: true,
+				basePath: '/views/',
+			},
+		},
+	},
+};
 
 const methods = {
-	hello(ctx) {
-		// can be used for authorization/authentication
-		// this will redirect before rendering the page
-		if (ctx.props.name != null && ctx.props.name == 'home') {
-			return ctx.redirect('/');
+	// this will validate the name in the /hello/:name route
+	checkName(context) {
+		if (context.params.name.toLowerCase() == 'home') {
+			// redirecting is as easy as return the context.redirect function.
+			return context.redirect('/');
 		}
-	}
-}
+	},
+};
 
-export default buildComponent(data, methods)
+export default buildComponent(data, methods);

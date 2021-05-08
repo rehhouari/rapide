@@ -96,16 +96,6 @@
 	</head>
 
 	<body>
-		<div
-			class="fixed w-screen h-screen inset-0 flex flex-col items-center justify-center bg-gray-800 z-10"
-			x-data="{show: true}"
-			x-show="show"
-			@pinecone-end.window="show=false"
-			@pinecone-start.window="show=true"
-		>
-			<img src="/images/alpine.png" alt="" width="80" />
-			<p class="prose-lg text-white">Loading...</p>
-		</div>
 		<div class="flex flex-col max-w-full h-screen bg-gray-50 text-gray-800">
 			<nav
 				class="bg-gray-800 flex space-x-2 h-18 w-full px-6 items-center"
@@ -119,27 +109,27 @@
 					<img src="/images/alpine.png" alt="" width="80" />
 				</a>
 			</nav>
-			<router x-data="router()" x-router x-views="#content">
-				<template x-route="/" x-view="/views/home.html"></template>
+			<div x-data="router()" x-router>
+				<template x-route="/" x-view="home.html"></template>
 				<template
 					x-route="/hello"
-					x-view="/views/hello.html"
+					x-view="hello.html"
 				></template>
 				<template
 					x-route="/inside"
-					x-view="/views/inside.html"
+					x-view="inside.html"
 				></template>
 				<template
 					x-route="/hello/:name"
-					x-handler="hello"
-					x-view="/views/hello.html"
+					x-handler="checkName"
+					x-view="hello.html"
 				></template>
 				<template
 					x-route="notfound"
-					x-view="/views/notfound.html"
+					x-view="notfound.html"
 				></template>
-			</router>
-			<main class="py-4 mx-2 max-w-full" id="content"></main>
+			</div>
+			<main class="py-4 mx-2 max-w-full" id="app"></main>
 		</div>
 		<!-- Main app module -->
 		<script type="module" src="/js/core/app.js"></script>
