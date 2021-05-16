@@ -1,16 +1,23 @@
 import { defineConfig } from 'vite';
 import WindiCSS from 'vite-plugin-windicss';
 import { VitePWA } from 'vite-plugin-pwa';
-import { default as AlpineRouter } from 'vite-plugin-alpine-router';
+import PurgeIcons from 'vite-plugin-purge-icons';
 
 export default defineConfig({
 	plugins: [
-		AlpineRouter(),
 		WindiCSS({
 			scan: {
 				dirs: ['.'], // all files in the cwd
 				fileExtensions: ['html', 'js', 'ts'], // also enabled scanning for js/ts
 			},
+		}),
+		PurgeIcons({
+			/* PurgeIcons Options */
+			content: [
+				'**/*.html',
+				'**/*.js',
+				'**/*.vue', // scan for .vue file as well
+			],
 		}),
 		VitePWA({
 			manifest: {
@@ -84,10 +91,7 @@ export default defineConfig({
 				background_color: '#ffffff',
 				theme_color: '#ffffff',
 				prefer_related_applications: false,
-			},
-			workbox: {
-				// workbox options for generateSW
-			},
+			}
 		}),
 	],
 	publicDir: 'public/',

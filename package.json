@@ -7,19 +7,24 @@
 		"serve": "vite preview"
 	},
 	"devDependencies": {
+		"@iconify/json": "^1.1.343",
 		"vite": "^2.1.5",
 		"vite-plugin-alpine-router": "^0.0.2",
+		"vite-plugin-purge-icons": "^0.7.0",
 		"vite-plugin-pwa": "^0.7.2",
 		"vite-plugin-windicss": "^0.14.2",
-		"windicss": "^2.5.14"
+		"windicss": "^2.5.14",
+		"workbox-window": "^6.1.5"
 	},
 	"dependencies": {
+		"@iconify/iconify": "^2.0.1",
 		"@ryangjchandler/alpine-clipboard": "^1.0.0",
 		"@ryangjchandler/alpine-toggle": "^0.1.0",
 		"@ryangjchandler/spruce": "^2.6.3",
 		"@ryangjchandler/x-else": "^0.0.2",
 		"alpine-magic-helpers": "^1.1.0",
 		"alpinejs": "^2.8.2",
+		"alpinejs-i18n": "^0.0.1",
 		"nprogress": "^0.2.0",
 		"pinecone-router": "^0.3.0",
 		"pinecone-router-middleware-views": "^0.0.3"

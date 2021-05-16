@@ -1,17 +1,24 @@
-<div
-	class="bg-gray-800 text-white rounded-2xl w-80 max-w-full space-y-4 p-6 mt-10 flex flex-col mx-auto text-center"
+<p
+	class="text-sm opacity-75 w-80 max-w-full mx-auto"
 >
-	<p class="">Vite + Alpine.JS Starter Template</p>
-	<p class="text-sm">
-		There is no documentation yet, I'll be using this for a project but if
-		you want docs open an issue or contact me.
-	</p>
-	<a href="/inside" class="button">What's inside</a>
-	<a href="/hello" class="button">Routing</a>
-	<a
-		href="https://github.com/rehhouari/vite-alpine-pwa"
-		target="_blank"
-		class="button"
-		>Github</a
-	>
+	Opinionated Alpine.js Starter Template
+</p>
+<div
+	x-data="hello()"
+	class="w-80 max-w-full mx-auto mt-5"
+>
+	<input
+		type="text"
+		name=""
+		id=""
+		placeholder="What's your name?"
+		class="px-4 py-2 text-sm text-center bg-transparent border border-gray-200 rounded outline-none active:outline-none dark:border-gray-700"
+		:value="$router.params.name ?? ''"
+		@keydown.enter="$router.redirect('/hello/'+$refs.input.value)"
+		x-ref="input"
+		autofocus
+	/>
+	<button class="block w-18 mt-3 rounded text-white bg-gray-500 mx-auto p-1 text-sm btn" disabled="">GO</button>
 </div>
+
+

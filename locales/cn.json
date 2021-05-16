@@ -1,0 +1,13 @@
+{
+  "404": "Page not found.",
+  "hello": "你好，",
+  "about": "About",
+  "headline": "Opinionated Alpine.js Starter Template.",
+  "home": "Home",
+  "toggle": {
+    "dark": "Toggle Dark Mode",
+    "languages": "Toggle Languages"
+  },
+  "writehome": "Write 'home' to go back to the main page.",
+  "yourname": "What is your name?"
+}

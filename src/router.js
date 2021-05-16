@@ -1,6 +1,6 @@
-import { buildComponent } from '../core/utils.js';
+import { buildComponent } from './utils.js';
 
-const data = {
+export const data = {
 	settings: {
 		middlewares: {
 			views: {
@@ -11,7 +11,7 @@ const data = {
 	},
 };
 
-const methods = {
+export const methods = {
 	// this will validate the name in the /hello/:name route
 	checkName(context) {
 		if (context.params.name.toLowerCase() == 'home') {
@@ -21,4 +21,4 @@ const methods = {
 	},
 };
 
-export default buildComponent(data, methods);
+window.router = buildComponent(data, methods);
