@@ -11,9 +11,11 @@ Fast Alpine.js web app mocking with <b>Rapide</b><sup><em>(fast)</em></sup><br>
 
 <br>
 
+> # Waring: README is not done, information is wrong.
+
 ## Features
 
-- ⚡️ [Vue 3](https://github.com/vuejs/vue-next), [Vite 2](https://github.com/vitejs/vite), [pnpm](https://pnpm.js.org/), [ESBuild](https://github.com/evanw/esbuild) - born with fastness
+- ⚡️ [Alpine.js](https://github.com/alpinejs/alpine), [Vite 2](https://github.com/vitejs/vite), [pnpm](https://pnpm.js.org/), [ESBuild](https://github.com/evanw/esbuild) - born with fastness
 
 - 🗂 [File based routing](./src/pages)
 
