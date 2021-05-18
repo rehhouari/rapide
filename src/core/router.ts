@@ -1,6 +1,6 @@
-import { buildComponent } from './utils.js';
+const router = () => ({
+	// router settings
 
-export const data = {
 	settings: {
 		middlewares: {
 			views: {
@@ -9,16 +9,20 @@ export const data = {
 			},
 		},
 	},
-};
 
-export const methods = {
-	// this will validate the name in the /hello/:name route
-	checkName(context) {
+	// handlers
+
+	/**
+	 * This is a basic example of authorization.
+	 * it will validate the name in the /hello/:name route
+	 */
+	checkName(context: any) {
 		if (context.params.name.toLowerCase() == 'home') {
 			// redirecting is as easy as return the context.redirect function.
 			return context.redirect('/');
 		}
 	},
-};
+});
 
-window.router = buildComponent(data, methods);
+export default router;
+window.router = router;

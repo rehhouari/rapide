@@ -1,24 +1,23 @@
+<div x-data>
 <p
-	class="text-sm opacity-75 w-80 max-w-full mx-auto"
->
-	Opinionated Alpine.js Starter Template
-</p>
+	class="text-sm opacity-75"
+ x-text="$t('headline')"></p>
 <div
-	x-data="hello()"
-	class="w-80 max-w-full mx-auto mt-5"
+	x-data="Alpine.component('hello')()"
+	class="mt-5"
 >
 	<input
 		type="text"
 		name=""
 		id=""
-		placeholder="What's your name?"
+		:placeholder="$t('yourname')"
 		class="px-4 py-2 text-sm text-center bg-transparent border border-gray-200 rounded outline-none active:outline-none dark:border-gray-700"
 		:value="$router.params.name ?? ''"
 		@keydown.enter="$router.redirect('/hello/'+$refs.input.value)"
 		x-ref="input"
 		autofocus
 	/>
-	<button class="block w-18 mt-3 rounded text-white bg-gray-500 mx-auto p-1 text-sm btn" disabled="">GO</button>
 </div>
 
 
+</div>

@@ -1,6 +1,8 @@
-import Spruce from '../store';
+import Spruce from '~/core/store';
 
 export default () => {
+
+	// define dark mode store.
 	Spruce.store(
 		'dark',
 		{
@@ -8,6 +10,7 @@ export default () => {
 		},
 		window.localStorage
 	);
+	
 
 	window.toggleDark = () => {
 		Spruce.toggle('dark.on');

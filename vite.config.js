@@ -1,9 +1,15 @@
+import path from 'path';
 import { defineConfig } from 'vite';
 import WindiCSS from 'vite-plugin-windicss';
 import { VitePWA } from 'vite-plugin-pwa';
 import PurgeIcons from 'vite-plugin-purge-icons';
 
 export default defineConfig({
+	resolve: {
+		alias: {
+			'~/': `${path.resolve(__dirname, 'src')}/`,
+		},
+	},
 	plugins: [
 		WindiCSS({
 			scan: {
@@ -20,6 +26,7 @@ export default defineConfig({
 			],
 		}),
 		VitePWA({
+			registerType: 'autoUpdate',
 			manifest: {
 				name: 'PWA App',
 				short_name: 'PWA App',
@@ -91,7 +98,8 @@ export default defineConfig({
 				background_color: '#ffffff',
 				theme_color: '#ffffff',
 				prefer_related_applications: false,
-			}
+			},
+			workbox: {},
 		}),
 	],
 	publicDir: 'public/',

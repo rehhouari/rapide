@@ -6,8 +6,9 @@
   "home": "Home",
   "toggle": {
     "dark": "Toggle Dark Mode",
-    "languages": "Toggle Languages"
+    "language": "Toggle Languages"
   },
   "writehome": "Write 'home' to go back to the main page.",
-  "yourname": "What is your name?"
+  "yourname": "What is your name?",
+  "routing": "Demonstration of routing with Pinecone Router, using $router helper, & authorization/redirecting."
 }

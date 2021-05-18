@@ -1,12 +1,13 @@
 {
 	"404": "لم يتم العثور على الصفحة.",
 	"hello": "مرحبا, ",
+	"routing": "Demonstration of routing with Pinecone Router, using $router helper, & authorization/redirecting.",
 	"about": "عن هذا القالب",
 	"headline": "قالب انطلاق لAlpine.js",
 	"home": "الصفحة الرئيسية",
 	"toggle": {
 		"dark": "بدل الوضع الداكن",
-		"languages": "بدل اللغات"
+		"language": "بدل اللغات"
 	},
 	"writehome": "اكتب 'Home' للعودة إلى الصفحة الرئيسية.",
 	"yourname": "ما اسمك؟"

@@ -1,8 +1,5 @@
-[x-cloak] {
-	opacity: 0;
-}
-
 /* This CSS file is proccessed by WindiCSS*/
+
 .card {
 	@apply rounded-2xl px-4 py-6 flex flex-col space-y-4;
 }

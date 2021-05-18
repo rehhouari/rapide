@@ -3,18 +3,20 @@ lockfileVersion: 5.3
 specifiers:
   '@iconify/iconify': ^2.0.1
   '@iconify/json': ^1.1.343
+  '@leanadmin/alpine-typescript': ^0.1.12
   '@ryangjchandler/alpine-clipboard': ^1.0.0
   '@ryangjchandler/alpine-toggle': ^0.1.0
   '@ryangjchandler/spruce': ^2.6.3
   '@ryangjchandler/x-else': ^0.0.2
-  alpine-magic-helpers: ^1.1.0
+  '@types/nprogress': ^0.2.0
+  alpine-magic-helpers: ^1.2.2
   alpinejs: ^2.8.2
   alpinejs-i18n: ^0.0.1
+  axios: ^0.21.1
   nprogress: ^0.2.0
-  pinecone-router: ^0.3.0
+  pinecone-router: ^0.3.1
   pinecone-router-middleware-views: ^0.0.3
   vite: ^2.1.5
-  vite-plugin-alpine-router: ^0.0.2
   vite-plugin-purge-icons: ^0.7.0
   vite-plugin-pwa: ^0.7.2
   vite-plugin-windicss: ^0.14.2
@@ -22,7 +24,6 @@ specifiers:
   workbox-window: ^6.1.5
 
 dependencies:
-  '@iconify/iconify': 2.0.1
   '@ryangjchandler/alpine-clipboard': 1.0.0
   '@ryangjchandler/alpine-toggle': 0.1.0
   '@ryangjchandler/spruce': 2.7.1
@@ -31,13 +32,16 @@ dependencies:
   alpinejs: 2.8.2
   alpinejs-i18n: 0.0.1
   nprogress: 0.2.0
-  pinecone-router: 0.3.0
+  pinecone-router: 0.3.1
   pinecone-router-middleware-views: 0.0.3
 
 devDependencies:
+  '@iconify/iconify': 2.0.1
   '@iconify/json': 1.1.343
+  '@leanadmin/alpine-typescript': 0.1.12
+  '@types/nprogress': 0.2.0
+  axios: 0.21.1
   vite: 2.3.2
-  vite-plugin-alpine-router: 0.0.2_vite@2.3.2
   vite-plugin-purge-icons: 0.7.0_vite@2.3.2
   vite-plugin-pwa: 0.7.3_vite@2.3.2
   vite-plugin-windicss: 0.14.6_vite@2.3.2
@@ -1113,9 +1117,14 @@ packages:
     resolution: {integrity: sha512-heGCmdiRc58+TQjKPiem8cmNZj7YXDG3TphRVw0UGjsz8/OKgN2ncBPy1kfFIiv5aKhUsij6WVTfOMUS7YgTbA==}
     dependencies:
       cross-fetch: 3.1.4
+    dev: true
 
   /@iconify/json/1.1.343:
     resolution: {integrity: sha512-SrBsYKeWW2ikMva8OawOK57Eem2lLrMpNwA7+gqZ6jT+NF/8xFLVtm1mFwUdpeZDBUHg5niiETRE/94W8tA6Kw==}
+    dev: true
+
+  /@leanadmin/alpine-typescript/0.1.12:
+    resolution: {integrity: sha512-PjAFfNTVuEWgwoxbFLWRfcaC7AqkzbQVvLlSCjNFBe+wnnWd5H2/G2q9tsA996Rw7k/EiZsBVqGbj43LvXI2HA==}
     dev: true
 
   /@nodelib/fs.scandir/2.1.4:
@@ -1248,6 +1257,10 @@ packages:
     resolution: {integrity: sha512-8/bnjSZD86ZfpBsDlCIkNXIvm+h6wi9g7IqL+kmFkQ+Wvu3JrasgLElfiPgoo8V8vVfnEi0QVS12gbl94h9YsQ==}
     dev: true
 
+  /@types/nprogress/0.2.0:
+    resolution: {integrity: sha512-1cYJrqq9GezNFPsWTZpFut/d4CjpZqA0vhqDUPFWYKF1oIyBz5qnoYMzR+0C/T96t3ebLAC1SSnwrVOm5/j74A==}
+    dev: true
+
   /@types/resolve/1.17.1:
     resolution: {integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==}
     dependencies:
@@ -1307,6 +1320,14 @@ packages:
   /at-least-node/1.0.0:
     resolution: {integrity: sha512-+q/t7Ekv1EDY2l6Gda6LLiX14rU9TV20Wa3ofeQmwPFZbOMo9DXrLbOjFaaclkXKWidIaopwAObQDqwWtGUjqg==}
     engines: {node: '>= 4.0.0'}
+    dev: true
+
+  /axios/0.21.1:
+    resolution: {integrity: sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==}
+    dependencies:
+      follow-redirects: 1.14.1
+    transitivePeerDependencies:
+      - debug
     dev: true
 
   /axios/0.21.1_debug@4.3.2:
@@ -1486,6 +1507,7 @@ packages:
     resolution: {integrity: sha512-1eAtFWdIubi6T4XPy6ei9iUFoKpUkIF971QLN8lIvvvwueI65+Nw5haMNKUwfJxabqlIIDODJKGrQ66gxC0PbQ==}
     dependencies:
       node-fetch: 2.6.1
+    dev: true
 
   /crypto-random-string/2.0.0:
     resolution: {integrity: sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==}
@@ -1578,6 +1600,16 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       to-regex-range: 5.0.1
+    dev: true
+
+  /follow-redirects/1.14.1:
+    resolution: {integrity: sha512-HWqDgT7ZEkqRzBvc2s64vSZ/hfOceEol3ac/7tKwzuvEyWx3/4UegXh5oBOIotkGsObyk3xznnSRVADBgWSQVg==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
     dev: true
 
   /follow-redirects/1.14.1_debug@4.3.2:
@@ -1857,6 +1889,7 @@ packages:
   /node-fetch/2.6.1:
     resolution: {integrity: sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==}
     engines: {node: 4.x || >=6.0.0}
+    dev: true
 
   /node-modules-regexp/1.0.0:
     resolution: {integrity: sha1-jZ2+KJZKSsVxLpExZCEHxx6Q7EA=}
@@ -1923,8 +1956,8 @@ packages:
       alpinejs: 2.8.2
     dev: false
 
-  /pinecone-router/0.3.0:
-    resolution: {integrity: sha512-imaLsCHBqb8SATUVIkw7piv7mNtAD/DefcPwO2RJ8dKdy7eIKcSZ87gjuBFU/+2yXsZBCk9t8ziwzGHY/zQErA==}
+  /pinecone-router/0.3.1:
+    resolution: {integrity: sha512-p8SQQK0ZwDzustekiGZ+rTXWZSHTeZZ1Vg7/YGZifmGtZ8BD+/zo+ML+A1n5c31xl0nwcmo67Xu30WrE3KFpNA==}
     dependencies:
       alpinejs: 2.8.2
     dev: false
@@ -2262,14 +2295,6 @@ packages:
   /upath/1.2.0:
     resolution: {integrity: sha512-aZwGpamFO61g3OlfT7OQCHqhGnW43ieH9WZeP7QxN/G/jS4jfqUkZxoryvJgVPEcrl5NL/ggHsSmLMHuH64Lhg==}
     engines: {node: '>=4'}
-    dev: true
-
-  /vite-plugin-alpine-router/0.0.2_vite@2.3.2:
-    resolution: {integrity: sha512-CZkBd/cC6GAf6anoY5Ang711eQSQ+IvsF+qwsKRbZuizzAlM8qRk4KiuWUhGd2BiCd5XC9yEhbiFCVaE15XkRw==}
-    peerDependencies:
-      vite: '>2.0.0-0'
-    dependencies:
-      vite: 2.3.2
     dev: true
 
   /vite-plugin-purge-icons/0.7.0_vite@2.3.2:

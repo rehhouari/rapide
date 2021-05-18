@@ -9,3 +9,4 @@ logs
 dist/
 *.tar
 github-pages/
+*.local

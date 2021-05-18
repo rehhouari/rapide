@@ -1,3 +1,5 @@
+// Dummy authentication placeholder
+
 var auth = {
 	logout: logout,
 	login: login,
