@@ -1,6 +1,6 @@
-import { AlpineComponentDataExtra } from '~/types';
+import { AlpineComponent } from '@leanadmin/alpine-typescript';
 
-export default class hello extends AlpineComponentDataExtra {
+export default class hello extends AlpineComponent {
 	name(): string | null {
 		let name: string | null = this.$router.params.name;
 		if (name) {
