@@ -33,8 +33,6 @@ Fast Alpine.js web app mocking with <b>Rapide</b><sup><em>(fast)</em></sup><br>
 
 -   🔥 Central application store with [Spruce](./src/store)
 
--   🖨 Server-side generation (SSG) via [vite-ssg](https://github.com/antfu/vite-ssg)
-
 -   🦾 Full TypeScript support, even in Alpine Components.
 
 -   ☁️ Deploy on Netlify & Vercel, zero-config
