@@ -60,7 +60,7 @@ Fast Alpine.js web app mocking with <b>Rapide</b><sup><em>(fast)</em></sup><br>
 -   [`vite-plugin-md`](https://github.com/antfu/vite-plugin-md) - Markdown as components / components in Markdown
     -   [`markdown-it-prism`](https://github.com/jGleitz/markdown-it-prism) - [Prism](https://prismjs.com/) for syntax highlighting
     -   [`prism-theme-vars`](https://github.com/antfu/prism-theme-vars) - customizable Prism.js theme using CSS variables
--   [Alpine I18n](https://github.com/rehhouari/alpinejs-i18n) - Internationalization, organized in local JSON files with [VSCode Extension support](#dev-tools)
+-   [Alpine I18n](https://github.com/rehhouari/alpinejs-i18n) - Internationalization, organized in local YAML files with [VSCode Extension support](#dev-tools)
 -   [Alpine Magic Helpers](https://github.com/alpine-collective/alpine-magic-helper), [x-else](https://github.com/ryangjchandler/x-else), [alpine-clipboard](https://github.com/ryangjchandler/alpine-clipboard), [alpine-toggle](https://github.com/ryangjchandler/alpine-toggle) - collection of useful magic helpers for Alpine.js, with TypeScript Support!.
 -   [Spruce](./src/store) - Central store for Alpine.js components, supporting custom storage drivers, meaning you can easily sync data.
 -   [NProgress](./src/modules/nprogress.js) - Beautiful progress bar, with [customizable looks](./src/styles/nprogress.css)
