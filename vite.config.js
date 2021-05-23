@@ -138,22 +138,33 @@ function plugin() {
 	function isCatchAllRoute(routePath) {
 		return /^\[\.{3}/.test(routePath);
 	}
+
+	var html =
+		'<div x-data="Alpine.component(\'router\')()" x-router>{templates}</div>';
+	var routeTemplate =
+		'<template x-route="{route}" x-view="{view}"></template>';
 	return {
 		name: 'plugin',
 		enforce: 'pre',
-		transformIndexHtml(html) {},
+		transformIndexHtml(h) {
+			console.log(html);
+			return h.replace('{router}', 'testttt');
+		},
+		handleHotUpdate({ file, server}) {
+			let parts = file.split('/');
+			if (parts.includes('pages')) {
+				server.ws.send({
+					type: 'full-reload',
+				});
+			}
+			return [];
+		},
 		async load(id) {
-			if (
-				id !==
-				'/home/rehhouari/Projects/web/templates/vite-alpine-pwa/node_modules/.pnpm/vite@2.3.2/node_modules/vite/dist/client/client.js'
-			)
-				return;
 			if (!generatedRoutes) {
 				generatedRoutes = [];
 				const pageDirPath = slash(path.resolve('src/pages'));
 				let filesPath = await getPageFiles(pageDirPath);
 				let pagesDir = pageDirPath;
-				console.log(filesPath);
 				const routes = [];
 				for (const filePath of filesPath) {
 					const resolvedPath = filePath.replace(extensionsRE, '');
@@ -169,7 +180,15 @@ function plugin() {
 						const node = pathNodes[i];
 						const isDynamic = isDynamicRoute(node);
 						const isCatchAll = isCatchAllRoute(node);
-						const normalizedName = isDynamic ? false ? isCatchAll ? "all" : node.replace(/^_/, "") : node.replace(/^\[(\.{3})?/, "").replace(/\]$/, "") : node;
+						const normalizedName = isDynamic
+							? false
+								? isCatchAll
+									? 'all'
+									: node.replace(/^_/, '')
+								: node
+										.replace(/^\[(\.{3})?/, '')
+										.replace(/\]$/, '')
+							: node;
 						const normalizedPath = normalizedName.toLowerCase();
 						route.name += route.name
 							? `-${normalizedName}`
@@ -194,7 +213,26 @@ function plugin() {
 					}
 					parentRoutes.push(route);
 				}
-				console.log({ routes });
+
+				let templates = '';
+				routes.forEach((route) => {
+					if (route.path == '/notfound') route.path = 'notfound';
+					console.log(route.component);
+					fs.copyFile(
+						route.component,
+						'./public/pages/' + route.name + '.html',
+						(err) => {
+							if (err) throw err;
+							console.log(
+								'source.txt was copied to destination.txt'
+							);
+						}
+					);
+					templates += routeTemplate
+						.replace('{route}', route.path)
+						.replace('{view}', route.name);
+				});
+				html = html.replace('{templates}', templates);
 			}
 		},
 	};

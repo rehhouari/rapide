@@ -1,6 +1,6 @@
 ## i18n
 
-This directory is to serve your locale translation files. JSON under this folder would be loaded automatically and register with their filenames as locale code.
+This directory is to serve your locale translation files. Yaml files under this folder are loaded automatically and register with their filenames as locale code.
 
 Check out [`alpinejs-i18n`](https://github.com/rehhouari/alpinejs-i18n) for more details.
 
