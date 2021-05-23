@@ -14,11 +14,12 @@ export default () => {
 
 	// load locale files
 	const messages = Object.fromEntries(
-		// @ts-ignore
-		Object.entries(import.meta.globEager('../../locales/*.json')).map(
+		Object.entries(import.meta.globEager('../../locales/*.y(a)?ml')).map(
 			([key, value]) => {
-				// @ts-ignore
-				return [key.match('../../locales/(.+).json')[1], value.default];
+				return [
+					key.match('../../locales/(.+).y(a)?ml')![1],
+					value.default,
+				];
 			}
 		)
 	);
@@ -26,15 +27,20 @@ export default () => {
 	// import everything
 	window.AlpineI18n.create(Spruce.get('i18n.locale'), messages);
 
-	// Locales of RTL Languages you support (arabic, farsi, hebrew..)
-	const supportedRtlLanguages = ['ara'];
+	// Run at first load to check if the current locale is RTL
+	checkRTL();
 
 	// Automatically switch to RTL
-	window.addEventListener('locale-change', function () {
-		if (supportedRtlLanguages.includes(window.AlpineI18n.locale)) {
-			document.body.setAttribute('dir', 'rtl');
-		} else {
-			document.body.removeAttribute('dir');
-		}
-	});
+	window.addEventListener('locale-change', checkRTL);
 };
+
+// Locales of RTL Languages you support (arabic, farsi, hebrew..)
+const supportedRtlLanguages = ['ara'];
+
+function checkRTL() {
+	if (supportedRtlLanguages.includes(window.AlpineI18n.locale)) {
+		document.body.setAttribute('dir', 'rtl');
+	} else {
+		document.body.removeAttribute('dir');
+	}
+}

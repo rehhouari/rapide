@@ -3,6 +3,9 @@ import { defineConfig } from 'vite';
 import WindiCSS from 'vite-plugin-windicss';
 import { VitePWA } from 'vite-plugin-pwa';
 import PurgeIcons from 'vite-plugin-purge-icons';
+import yaml from '@rollup/plugin-yaml';
+import fg from 'fast-glob';
+import fs from 'fs';
 
 export default defineConfig({
 	resolve: {
@@ -11,6 +14,8 @@ export default defineConfig({
 		},
 	},
 	plugins: [
+		plugin(),
+		yaml(),
 		WindiCSS({
 			scan: {
 				dirs: ['.'], // all files in the cwd
@@ -104,3 +109,93 @@ export default defineConfig({
 	],
 	publicDir: 'public/',
 });
+
+function plugin() {
+	let generatedRoutes = null;
+	const extensions = ['html'];
+	const extensionsRE = new RegExp(`\\.(${extensions.join('|')})$`);
+	var dynamicRouteRE = /^\[.+\]$/;
+	function slash(str) {
+		return str.replace(/\\/g, '/');
+	}
+	async function getPageFiles(path) {
+		const ext = extensionsToGlob(extensions);
+		const files = await fg(`**/*.${ext}`, {
+			ignore: ['node_modules', '.git', '**/__*__/**'],
+			onlyFiles: true,
+			cwd: path,
+		});
+		return files;
+	}
+	function extensionsToGlob(extensions) {
+		return extensions.length > 1
+			? `{${extensions.join(',')}}`
+			: extensions[0] || '';
+	}
+	function isDynamicRoute(routePath) {
+		return dynamicRouteRE.test(routePath);
+	}
+	function isCatchAllRoute(routePath) {
+		return /^\[\.{3}/.test(routePath);
+	}
+	return {
+		name: 'plugin',
+		enforce: 'pre',
+		transformIndexHtml(html) {},
+		async load(id) {
+			if (
+				id !==
+				'/home/rehhouari/Projects/web/templates/vite-alpine-pwa/node_modules/.pnpm/vite@2.3.2/node_modules/vite/dist/client/client.js'
+			)
+				return;
+			if (!generatedRoutes) {
+				generatedRoutes = [];
+				const pageDirPath = slash(path.resolve('src/pages'));
+				let filesPath = await getPageFiles(pageDirPath);
+				let pagesDir = pageDirPath;
+				console.log(filesPath);
+				const routes = [];
+				for (const filePath of filesPath) {
+					const resolvedPath = filePath.replace(extensionsRE, '');
+					const pathNodes = resolvedPath.split('/');
+					const component = `/${pagesDir}/${filePath}`;
+					const route = {
+						name: '',
+						path: '',
+						component,
+					};
+					let parentRoutes = routes;
+					for (let i = 0; i < pathNodes.length; i++) {
+						const node = pathNodes[i];
+						const isDynamic = isDynamicRoute(node);
+						const isCatchAll = isCatchAllRoute(node);
+						const normalizedName = isDynamic ? false ? isCatchAll ? "all" : node.replace(/^_/, "") : node.replace(/^\[(\.{3})?/, "").replace(/\]$/, "") : node;
+						const normalizedPath = normalizedName.toLowerCase();
+						route.name += route.name
+							? `-${normalizedName}`
+							: normalizedName;
+						const parent = parentRoutes.find(
+							(node2) => node2.name === route.name
+						);
+						if (parent) {
+							parent.children = parent.children || [];
+							parentRoutes = parent.children;
+							route.path = '';
+						} else if (normalizedName === 'index' && !route.path) {
+							route.path += '/';
+						} else if (normalizedName !== 'index') {
+							if (isDynamic) {
+								route.path += `/:${normalizedName}`;
+								if (isCatchAll) route.path += '(.*)';
+							} else {
+								route.path += `/${normalizedPath}`;
+							}
+						}
+					}
+					parentRoutes.push(route);
+				}
+				console.log({ routes });
+			}
+		},
+	};
+}

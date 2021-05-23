@@ -1,77 +1,11 @@
 import type AlpineI18n from 'alpinejs-i18n';
 import type { Context } from 'pinecone-router';
 import type { AxiosRequestConfig, AxiosPromise } from 'axios';
+import { AlpineComponent } from '@leanadmin/alpine-typescript';
 
-// Window.Alpine type
-export declare interface Alpine {
-	version: string;
-	pauseMutationObserver: boolean;
-	magicProperties: { [name: string]: (el: HTMLElement) => void };
-	ignoreFocusedForValueBinding: boolean;
-	onComponentInitializeds: Array<(component: AlpineComponent) => void>;
-	onBeforeComponentInitializeds: Array<(component: AlpineComponent) => void>;
-	onComponentInitialized: (
-		callback: (component: AlpineComponent) => void
-	) => void;
-	onBeforeComponentInitialized: (
-		callback: (component: AlpineComponent) => void
-	) => void;
-	listenForNewUninitializedComponentsAtRunTime: () => undefined;
-	discoverUninitializedComponents: (
-		callback: (rootEl: HTMLElement) => void,
-		el?: HTMLElement
-	) => void;
-	discoverComponents: (callback: (rootEl: HTMLElement) => void) => void;
-	start: () => void;
-	addMagicProperty: (
-		name: string,
-		callback: ($el: HTMLElement) => void
-	) => void;
-	clone: (component: AlpineComponent, newEl: HTMLElement) => void;
-
-	[key: string]: any;
-}
-
-// Actual Alpine Component{} type. will be accessed by plugins.
-export declare interface AlpineComponent {
-	$el: HTMLElement;
-	$data: ProxyConstructor;
-	$nextTickStack: CallableFunction[];
-	$showDirectiveStack: any[];
-	$watchers: { [name: string]: CallableFunction };
-	unobservedData: AlpineComponentData;
-	getUnobservedData: () => AlpineComponentData;
-	updateElements: (rootEl: HTMLElement, extraVars?: () => {}) => void;
-	updateElement: (el: HTMLElement, extraVars?: () => {}) => void;
-	evaluateReturnExpression: (
-		el: HTMLElement,
-		expression: string,
-		extraVars?: () => {}
-	) => void;
-	[key: string]: any;
-}
-
-// The data that you can access within a component
-export abstract class AlpineComponentData {
-	/** Retrieve the root component DOM node. */
-	$el!: HTMLElement;
-	/** Retrieve DOM elements marked with x-ref inside the component. */
-	$refs!: {
-		[name: string]: HTMLElement;
-	};
-	/** Retrieve the native browser "Event" object within an event listener. */
-	$event!: Event;
-	/** Create a CustomEvent and dispatch it using .dispatchEvent() internally. */
-	$dispatch!: (event: string, data: object) => void;
-	/** Execute a given expression AFTER Alpine has made its reactive DOM updates. */
-	$nextTick!: (callback: (_: any) => void) => void;
-	/** Will fire a provided callback when a component property you "watched" gets changed. */
-	$watch!: (property: string, callback: (value: any) => void) => void;
-	[key: string]: any;
-}
 
 // Extended component data with additional magic helpers.
-export abstract class AlpineComponentDataExtra extends AlpineComponentData {
+export abstract class AlpineComponentData extends AlpineComponent {
 	/**
 	 * The current route's context. Pinecone Router.
 	 */

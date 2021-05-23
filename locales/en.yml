@@ -1,0 +1,11 @@
+'404': Page not found.
+hello: 'hello, '
+headline: Opinionated Alpine.js Starter Template.
+name-entry: What is your name?
+home: Home
+about: About
+toggle:
+    dark: Toggle Dark Mode
+    language: Toggle Languages
+tip: Write 'home' to go back to the main page.
+routing: Demonstration of routing with Pinecone Router, using $router helper, & authorization/redirecting.

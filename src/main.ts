@@ -12,9 +12,7 @@ Object.values(import.meta.globEager('./modules/*.{js,ts}')).map((m) =>
 
 // register components
 Object.entries(import.meta.globEager('./components/*.{js,ts}')).map(
-	([key, value]) => {
-		// @ts-ignore
-		let name = key.match('./components/(.*).(js|ts)')[1];
+	([_, value]) => {
 		component(value.default.name, value.default);
 	}
 );
