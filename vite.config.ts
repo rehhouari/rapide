@@ -3,12 +3,17 @@ import { defineConfig } from 'vite';
 import WindiCSS from 'vite-plugin-windicss';
 import { VitePWA } from 'vite-plugin-pwa';
 import PurgeIcons from 'vite-plugin-purge-icons';
+// @ts-ignore
 import yaml from '@rollup/plugin-yaml';
+// @ts-ignore
 import { plugin } from './src/plugin';
-import mdPlugin from 'vite-plugin-markdown';
+import mdPlugin, { Mode } from 'vite-plugin-markdown';
 import Prism from 'markdown-it-prism';
 import markdownIt from 'markdown-it';
+// @ts-ignore
+// import dynamicImportVars from '@rollup/plugin-dynamic-import-vars';
 
+// ts-ignore
 export default defineConfig({
 	resolve: {
 		alias: {
@@ -16,10 +21,13 @@ export default defineConfig({
 		},
 	},
 	plugins: [
+		//dynamicImportVars(),
 		mdPlugin({
+			mode: [Mode.HTML],
 			markdownIt: markdownIt({ html: true }).use(Prism),
 		}),
 		plugin(),
+		htmlplugin(),
 		yaml(),
 		WindiCSS({
 			scan: {
@@ -107,6 +115,7 @@ export default defineConfig({
 				orientation: 'any',
 				background_color: '#ffffff',
 				theme_color: '#ffffff',
+				//@ts-ignore
 				prefer_related_applications: false,
 			},
 			workbox: {},
@@ -114,3 +123,15 @@ export default defineConfig({
 	],
 	publicDir: 'public/',
 });
+
+function htmlplugin() {
+	return {
+		name: 'html-plugin',
+		enforce: 'pre',
+		transform(code: any, id: any) {
+			if (id.endsWith('.html'))
+				return `export default ${JSON.stringify(code)}`;
+			else return code;
+		},
+	};
+}

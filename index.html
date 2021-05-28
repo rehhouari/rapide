@@ -101,6 +101,7 @@
 	</head>
 
 	<body>
+		<div x-data="router()" x-router></div>
 		<div
 			class="flex flex-col max-w-full h-screen dark:bg-warm-gray-900 text-gray-700 dark:text-gray-200 transition-colors"
 		>
@@ -110,7 +111,7 @@
 			>
 				Rapide
 			</a>
-			<main class="py-4 max-w-full text-center" id="app"></main>
+			<main class="py-4 max-w-full text-center" id="app"><!--root--></main>
 			<nav
 				class="flex justify-center space-x-4 text-2xl mt-6"
 				dir="ltr"

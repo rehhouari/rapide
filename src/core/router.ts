@@ -1,30 +1,27 @@
-import type { Context } from 'pinecone-router';
+import { routes } from 'virtual:routes';
 
-const router = () => ({
-	// router settings
-	settings: {
-		middlewares: {
-			views: {
-				selector: '#app',
-				enable: true,
-				basePath: '/pages/',
-			},
+export const addRoutes = () => {
+	routes.forEach((route: any) => {
+		let template = document.createElement('template');
+		template.setAttribute('x-route', route.route);
+		if (route.view) template.setAttribute('x-view', route.view);
+		if (route.handler) template.setAttribute('x-handler', route.handler);
+		document.querySelector('[x-router]')?.appendChild(template)
+	});
+};
+
+// router settings
+const settings = {
+	allowNoHandler: true,
+	middlewares: {
+		views: {
+			selector: '#app',
+			enable: true,
+			basePath: '/pages/',
 		},
 	},
+};
 
-	// handlers
-
-	/**
-	 * This is a basic example of authorization.
-	 * it will validate the name in the /hello/:name route
-	 */
-	checkName(context: Context) {
-		if (context.params.name.toLowerCase() == 'home') {
-			// redirecting is as easy as return the context.redirect function.
-			return context.redirect('/');
-		}
-	},
-});
-
+const router = () => ({ settings: settings });
 export default router;
 window.router = router;

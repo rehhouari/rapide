@@ -8,7 +8,8 @@
 	</div>
 
 	<p
-		class="text-sm opacity-75"
+		class="text-sm opacity-75 text-left"
+		:class="{'text-right': document.body.getAttribute('dir') == 'rtl'}"
 		x-text="$t('routing')"
 	></p>
 
@@ -23,6 +24,6 @@
 		x-ref="input"
 		autofocus
 	/>
-	<p class="text-sm" x-text="$t('writehome')">
+	<p class="text-sm" x-text="$t('tip')">
 	</p>
 </div>
