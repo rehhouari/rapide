@@ -17,7 +17,9 @@ Fast Alpine.js web app mocking with <b>Rapide</b><sup><em>(fast)</em></sup><br>
 
 -   📦 [Components auto importing](./src/components)
 
--   🗂 Add functionality with auto-loaded [modules](./src/modules)
+-   🗂 [File based routing](./src/pages)
+
+-   🛺 Add functionality with auto-loaded [modules](./src/modules)
 
 -   📑 [Organized file structure](./src/)
 
@@ -25,7 +27,7 @@ Fast Alpine.js web app mocking with <b>Rapide</b><sup><em>(fast)</em></sup><br>
 
 -   🎨 [Windi CSS](https://github.com/windicss/windicss) - next generation utility-first CSS framework
 
--   😃 [Use icons from any icon sets, with no compromise](./index.html#l127)
+-   😃 [Use icons from any icon sets, with no compromise](./index.html#L120)
 
 -   🌍 [I18n ready](./locales) with [VSCode extension support](#dev-tools)
 

@@ -4,8 +4,10 @@ import WindiCSS from 'vite-plugin-windicss';
 import { VitePWA } from 'vite-plugin-pwa';
 import PurgeIcons from 'vite-plugin-purge-icons';
 import yaml from '@rollup/plugin-yaml';
-import fg from 'fast-glob';
-import fs from 'fs';
+import { plugin } from './src/plugin';
+import mdPlugin from 'vite-plugin-markdown';
+import Prism from 'markdown-it-prism';
+import markdownIt from 'markdown-it';
 
 export default defineConfig({
 	resolve: {
@@ -14,6 +16,9 @@ export default defineConfig({
 		},
 	},
 	plugins: [
+		mdPlugin({
+			markdownIt: markdownIt({ html: true }).use(Prism),
+		}),
 		plugin(),
 		yaml(),
 		WindiCSS({
@@ -109,131 +114,3 @@ export default defineConfig({
 	],
 	publicDir: 'public/',
 });
-
-function plugin() {
-	let generatedRoutes = null;
-	const extensions = ['html'];
-	const extensionsRE = new RegExp(`\\.(${extensions.join('|')})$`);
-	var dynamicRouteRE = /^\[.+\]$/;
-	function slash(str) {
-		return str.replace(/\\/g, '/');
-	}
-	async function getPageFiles(path) {
-		const ext = extensionsToGlob(extensions);
-		const files = await fg(`**/*.${ext}`, {
-			ignore: ['node_modules', '.git', '**/__*__/**'],
-			onlyFiles: true,
-			cwd: path,
-		});
-		return files;
-	}
-	function extensionsToGlob(extensions) {
-		return extensions.length > 1
-			? `{${extensions.join(',')}}`
-			: extensions[0] || '';
-	}
-	function isDynamicRoute(routePath) {
-		return dynamicRouteRE.test(routePath);
-	}
-	function isCatchAllRoute(routePath) {
-		return /^\[\.{3}/.test(routePath);
-	}
-
-	var html =
-		'<div x-data="Alpine.component(\'router\')()" x-router>{templates}</div>';
-	var routeTemplate =
-		'<template x-route="{route}" x-view="{view}"></template>';
-	return {
-		name: 'plugin',
-		enforce: 'pre',
-		transformIndexHtml(h) {
-			console.log(html);
-			return h.replace('{router}', 'testttt');
-		},
-		handleHotUpdate({ file, server}) {
-			let parts = file.split('/');
-			if (parts.includes('pages')) {
-				server.ws.send({
-					type: 'full-reload',
-				});
-			}
-			return [];
-		},
-		async load(id) {
-			if (!generatedRoutes) {
-				generatedRoutes = [];
-				const pageDirPath = slash(path.resolve('src/pages'));
-				let filesPath = await getPageFiles(pageDirPath);
-				let pagesDir = pageDirPath;
-				const routes = [];
-				for (const filePath of filesPath) {
-					const resolvedPath = filePath.replace(extensionsRE, '');
-					const pathNodes = resolvedPath.split('/');
-					const component = `/${pagesDir}/${filePath}`;
-					const route = {
-						name: '',
-						path: '',
-						component,
-					};
-					let parentRoutes = routes;
-					for (let i = 0; i < pathNodes.length; i++) {
-						const node = pathNodes[i];
-						const isDynamic = isDynamicRoute(node);
-						const isCatchAll = isCatchAllRoute(node);
-						const normalizedName = isDynamic
-							? false
-								? isCatchAll
-									? 'all'
-									: node.replace(/^_/, '')
-								: node
-										.replace(/^\[(\.{3})?/, '')
-										.replace(/\]$/, '')
-							: node;
-						const normalizedPath = normalizedName.toLowerCase();
-						route.name += route.name
-							? `-${normalizedName}`
-							: normalizedName;
-						const parent = parentRoutes.find(
-							(node2) => node2.name === route.name
-						);
-						if (parent) {
-							parent.children = parent.children || [];
-							parentRoutes = parent.children;
-							route.path = '';
-						} else if (normalizedName === 'index' && !route.path) {
-							route.path += '/';
-						} else if (normalizedName !== 'index') {
-							if (isDynamic) {
-								route.path += `/:${normalizedName}`;
-								if (isCatchAll) route.path += '(.*)';
-							} else {
-								route.path += `/${normalizedPath}`;
-							}
-						}
-					}
-					parentRoutes.push(route);
-				}
-
-				let templates = '';
-				routes.forEach((route) => {
-					if (route.path == '/notfound') route.path = 'notfound';
-					console.log(route.component);
-					fs.copyFile(
-						route.component,
-						'./public/pages/' + route.name + '.html',
-						(err) => {
-							if (err) throw err;
-							console.log(
-								'source.txt was copied to destination.txt'
-							);
-						}
-					);
-					templates += routeTemplate
-						.replace('{route}', route.path)
-						.replace('{view}', route.name);
-				});
-				html = html.replace('{templates}', templates);
-			}
-		},
-	};
-}

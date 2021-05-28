@@ -101,19 +101,6 @@
 	</head>
 
 	<body>
-		{router}
-		<div x-data="router()" x-router>
-			<template x-route="/" x-view="home.html"></template>
-			<template x-route="/hello" x-view="hello.html"></template>
-			<template x-route="/inside" x-view="inside.html"></template>
-			<template
-				x-route="/hello/:name"
-				x-handler="checkName"
-				x-view="hello.html"
-			></template>
-			<template x-route="notfound" x-view="notfound.html"></template>
-		</div>
-
 		<div
 			class="flex flex-col max-w-full h-screen dark:bg-warm-gray-900 text-gray-700 dark:text-gray-200 transition-colors"
 		>

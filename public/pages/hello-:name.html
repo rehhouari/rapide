@@ -1,4 +1,4 @@
-<div x-data="Alpine.component('hello')()" class=" flex flex-col space-y-4">
+<div x-data="Alpine.component('hello')()" class=" flex flex-col space-y-4 w-80 max-w-full mx-auto">
 	<p class="text-4xl">
 		<span class="iconify mx-auto" data-icon="carbon:pedestrian"></span>
 	</p>
@@ -17,7 +17,7 @@
 		name=""
 		id=""
 		:placeholder="$t('name-entry')"
-		class="px-4 py-2 text-sm text-center bg-transparent border border-gray-200 rounded outline-none active:outline-none dark:border-gray-700"
+		class="py-2 text-sm text-center bg-transparent border border-gray-200 rounded outline-none active:outline-none dark:border-gray-700"
 		:value="$router.params.name ?? ''"
 		@keydown.enter="$router.redirect('/hello/'+$refs.input.value)"
 		x-ref="input"

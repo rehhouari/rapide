@@ -1,6 +1,6 @@
-'404': لم يتم العثور على الصفحة.
-hello: 'مرحبا, '
-routing: Demonstration of routing with Pinecone Router, using $router helper, & authorization/redirecting.
+'404': لم يتم العثور على هذه الصفحة.
+hello: 'مرحبا، '
+routing: عرض عملي للتوجيه باستخدام Pinecone Router ، باستخدام $router ، والترخيص / إعادة التوجيه.
 about: عن هذا القالب
 headline: قالب انطلاق لAlpine.js
 home: الصفحة الرئيسية
