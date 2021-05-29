@@ -21,5 +21,5 @@ export default () => {
 };
 
 function set() {
-	document.body.classList.toggle('dark', Spruce.get('dark.on'));
+	document.children[0].classList.toggle('dark', Spruce.get('dark.on'));
 }

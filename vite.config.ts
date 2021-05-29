@@ -7,11 +7,6 @@ import PurgeIcons from 'vite-plugin-purge-icons';
 import yaml from '@rollup/plugin-yaml';
 // @ts-ignore
 import { plugin } from './src/plugin';
-import mdPlugin, { Mode } from 'vite-plugin-markdown';
-import Prism from 'markdown-it-prism';
-import markdownIt from 'markdown-it';
-// @ts-ignore
-// import dynamicImportVars from '@rollup/plugin-dynamic-import-vars';
 
 // ts-ignore
 export default defineConfig({
@@ -22,17 +17,12 @@ export default defineConfig({
 	},
 	plugins: [
 		//dynamicImportVars(),
-		mdPlugin({
-			mode: [Mode.HTML],
-			markdownIt: markdownIt({ html: true }).use(Prism),
-		}),
 		plugin(),
-		htmlplugin(),
 		yaml(),
 		WindiCSS({
 			scan: {
-				dirs: ['.'], // all files in the cwd
-				fileExtensions: ['html', 'js', 'ts'], // also enabled scanning for js/ts
+				dirs: ['.', './src/pages/'], // all files in the cwd
+				fileExtensions: ['html', 'js', 'ts', 'css'], // also enabled scanning for js/ts
 			},
 		}),
 		PurgeIcons({
@@ -123,15 +113,3 @@ export default defineConfig({
 	],
 	publicDir: 'public/',
 });
-
-function htmlplugin() {
-	return {
-		name: 'html-plugin',
-		enforce: 'pre',
-		transform(code: any, id: any) {
-			if (id.endsWith('.html'))
-				return `export default ${JSON.stringify(code)}`;
-			else return code;
-		},
-	};
-}

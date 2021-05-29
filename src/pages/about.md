@@ -2,12 +2,12 @@
 title: About
 ---
 
-<div class="text-center">
-  <span class="iconify" data-icon="dicom-overlay" class="text-4xl -mb-6 m-auto"></span>
-  <h3>About</h3>
+<div class="text-center mb-3">
+	<span class="iconify text-4xl" data-icon="carbon:dicom-overlay"></span>
+	<h3>About</h3>
 </div>
 
-[Vitesse](https://github.com/antfu/vitesse) is an opinionated [Vite](https://github.com/vitejs/vite) starter template made by [@antfu](https://github.com/antfu) for mocking apps swiftly. With **file-based routing**, **components auto importing**, **markdown support**, I18n, PWA and uses **Tailwind** v2 for UI.
+[Rapide](https://github.com/rehhouari/rapide) is an opinionated [Alpine.js](https://github.com/vitejs/vite) starter template for [Alpine.js](https://github.com/alpinejs/alpine) made by [@rehhouari](https://github.com/rehhouari) for mocking apps swiftly. It's inspired by [Vitesse](https://github.com/antfu/vitesse) and thus it also have: **file-based routing**, **components auto importing**, **markdown support**, [I18n](https://github.com/rehhouari/alpinejs-i18n), PWA and uses **WindiCSS** (next-gen TailwindCSS compiler) for UI.
 
 ```js
 // syntax highlighting example
@@ -17,4 +17,4 @@ function vitesse() {
 }
 ```
 
-Check out the [GitHub repo](https://github.com/antfu/vitesse) for more details.
+Check out the [GitHub repo](https://github.com/rehhouari/rapide) for more details.

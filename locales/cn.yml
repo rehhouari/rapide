@@ -1,11 +1,12 @@
 '404': 找不到页面抱歉.
 hello: 你好，
 about:  关于此模板
-headline: Opinionated Alpine.js Starter Template.
-home: Home
+headline: 固执己见的 Alpine.js 项目模板
+home: 家
 toggle:
     dark: 切换黑暗模式
     language: 切换语言
 tip: 输入“ home”以返回主页。
 name-entry: 你叫什么名字？
-routing: 演示“ Pinecone Router”，“ $ router”和授权/重定向的路由。
+routing: 演示“ Pinecone Router”，“ $router”和授权/重定向的路由。
+isRTL: false

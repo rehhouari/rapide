@@ -5,49 +5,18 @@ import ts from 'typescript';
 
 import Frontmatter from 'front-matter';
 import MarkdownIt from 'markdown-it';
-import Prism from 'markdown-it-prism';
 
-
-class ExportedContent {
-	#exports = [];
-	#contextCode = '';
-
-	addContext(contextCode) {
-		this.#contextCode += `${contextCode}\n`;
-	}
-
-	addExporting(exported) {
-		this.#exports.push(exported);
-	}
-
-	export() {
-		return [
-			this.#contextCode,
-			`export { ${this.#exports.join(', ')} }`,
-		].join('\n');
-	}
-}
-
-const markdownCompiler = (options) => {
-	if (options.markdownIt) {
-		if (
-			options.markdownIt ||
-			options.markdownIt?.constructor?.name === 'MarkdownIt'
-		) {
-			return options.markdownIt;
-		} else if (typeof options.markdownIt === 'object') {
-			return MarkdownIt(options.markdownIt);
-		}
-	} else if (options.markdown) {
-		return { render: options.markdown };
-	}
-	return MarkdownIt({ html: true });
+const markdownCompiler = () => {
+	return MarkdownIt({
+		html: true,
+		linkify: true,
+		typographer: true,
+	}).use(require('markdown-it-prism'), require('markdown-it-anchor'));
 };
 
-const tf = (code, options) => {
-	const content = new ExportedContent();
+const tf = (code) => {
 	const fm = Frontmatter(code);
-	const html = markdownCompiler(options).render(fm.body);
+	const html = markdownCompiler().render(fm.body);
 
 	return {
 		code: html,
@@ -55,9 +24,20 @@ const tf = (code, options) => {
 	};
 };
 
+const defaultOptions = {
+	pagesDir: 'src/pages',
+	layoutsDir: 'src/layouts/',
+	layoutContentString: '<!--content-->',
+	viewsDir: '/pages/',
+	dev: true,
+}
 
-export const plugin = () => {
-	const virtualFileId = 'virtual:routes';
+export const plugin = (
+	options = defaultOptions
+) => {
+	options = {...defaultOptions, ...options}
+	const virtualRoutesId = 'virtual:pinecone-routes';
+	const virtualUpdateId = 'virtual:pinecone-update';
 	let generatedRoutes = null;
 
 	const extensions = ['html', 'ts', 'js', 'md'];
@@ -98,137 +78,194 @@ export const plugin = () => {
 		return '.' + path.match(/(\/src\/pages\/.+)/gi)[0];
 	}
 
+	async function generateRoutes() {
+		let generatedRoutes = [];
+		const pageDirPath = slash(path.resolve(options.pagesDir));
+		let filesPath = await getPageFiles(pageDirPath);
+		let pagesDir = pageDirPath;
+		const routes = [];
+		for (const filePath of filesPath) {
+			const resolvedPath = filePath.replace(extensionsRE, '');
+			const pathNodes = resolvedPath.split('/');
+			const fullPath = `/${pagesDir}/${filePath}`;
+			const file = {
+				name: '',
+				path: '',
+				fullPath,
+			};
+			let parentRoutes = routes;
+			for (let i = 0; i < pathNodes.length; i++) {
+				const node = pathNodes[i];
+				const isDynamic = isDynamicRoute(node);
+				const isCatchAll = isCatchAllRoute(node);
+				const normalizedName = isDynamic
+					? false
+						? isCatchAll
+							? 'all'
+							: node.replace(/^_/, '')
+						: node.replace(/^\[(\.{3})?/, '').replace(/\]$/, '')
+					: node;
+				const normalizedPath = normalizedName.toLowerCase();
+				file.name += file.name ? `-${normalizedName}` : normalizedName;
+				const parent = parentRoutes.find(
+					(node2) => node2.name === file.name
+				);
+				if (parent) {
+					parent.children = parent.children || [];
+					parentRoutes = parent.children;
+					file.path = '';
+				} else if (normalizedName === 'index' && !file.path) {
+					file.path += '/';
+				} else if (normalizedName !== 'index') {
+					if (isDynamic) {
+						file.path += `/:${normalizedName}`;
+						if (isCatchAll) file.path += '(.*)';
+					} else {
+						file.path += `/${normalizedPath}`;
+					}
+				}
+			}
+			if (file.fullPath.includes('README.md')) continue;
+			ext = extensionRE.exec(file.fullPath);
+			file.ext = ext[1];
+			if (file.path == '/notfound') file.path = 'notfound';
+			file.isHandler = ['js', 'ts'].includes(file.ext);
+
+			let r = {
+				name: file.name,
+				route: file.path,
+			};
+			let path = relativePath(file.fullPath);
+			if (!file.isHandler) {
+				view = file.name + '.html';
+				let fm = null;
+				let html = '';
+				if (file.ext == 'html') {
+					let source = fs.readFileSync(path, 'utf-8');
+					fm = Frontmatter(source);
+				} else if (file.ext == 'md') {
+					let source = fs.readFileSync(path, 'utf-8');
+					fm = Frontmatter(source);
+					fm.body = tf(fm.body).code;
+				}
+				html = fm.attributes.layout
+					? fs
+							.readFileSync(
+								options.layoutsDir +
+									fm.attributes.layout +
+									'.html',
+								'utf-8'
+							)
+							.replace(options.layoutContentString, fm.body)
+					: fm.body;
+				fs.writeFileSync('./public' + options.viewsDir + view, html);
+
+				r.view = view;
+			} else {
+				let tsModule = null;
+				if (file.ext == 'ts') {
+					let data = fs.readFileSync(path, 'utf-8');
+					let js = ts.transpileModule(data, {
+						compilerOptions: {
+							module: ts.ModuleKind.ES2015,
+						},
+					});
+					tsModule =
+						'data:text/javascript;base64,' +
+						Buffer.from(js.outputText).toString('base64');
+				}
+				let handlerFunction = (await import(tsModule ?? path)).default;
+				r.handler = handlerFunction
+					.toString()
+					.replace(/\r?\n|\r/g, '');
+			}
+			let index = generatedRoutes.findIndex((e) => e.name == r.name);
+			if (index != -1) {
+				r = { ...r, ...generatedRoutes[index] };
+				generatedRoutes[index] = r;
+			} else generatedRoutes.push(r);
+		}
+		return generatedRoutes;
+	}
+
 	return {
-		name: 'plugin',
-		enforce: 'pre',
+		name: 'vite-plugin-pinecone',
+		//enforce: 'pre',
 		resolveId(id) {
-			if (id === virtualFileId) {
-				return virtualFileId;
+			if (id === virtualRoutesId) {
+				return virtualRoutesId;
+			}
+			if (id === virtualUpdateId) {
+				return virtualUpdateId;
 			}
 		},
 		async load(id) {
-			if (id === virtualFileId) {
+			if (id === virtualRoutesId) {
 				if (!generatedRoutes) {
-					generatedRoutes = [];
-					const pageDirPath = slash(path.resolve('src/pages'));
-					let filesPath = await getPageFiles(pageDirPath);
-					let pagesDir = pageDirPath;
-					const routes = [];
-					for (const filePath of filesPath) {
-						const resolvedPath = filePath.replace(extensionsRE, '');
-						const pathNodes = resolvedPath.split('/');
-						const fullPath = `/${pagesDir}/${filePath}`;
-						const file = {
-							name: '',
-							path: '',
-							fullPath,
-						};
-						let parentRoutes = routes;
-						for (let i = 0; i < pathNodes.length; i++) {
-							const node = pathNodes[i];
-							const isDynamic = isDynamicRoute(node);
-							const isCatchAll = isCatchAllRoute(node);
-							const normalizedName = isDynamic
-								? false
-									? isCatchAll
-										? 'all'
-										: node.replace(/^_/, '')
-									: node
-											.replace(/^\[(\.{3})?/, '')
-											.replace(/\]$/, '')
-								: node;
-							const normalizedPath = normalizedName.toLowerCase();
-							file.name += file.name
-								? `-${normalizedName}`
-								: normalizedName;
-							const parent = parentRoutes.find(
-								(node2) => node2.name === file.name
-							);
-							if (parent) {
-								parent.children = parent.children || [];
-								parentRoutes = parent.children;
-								file.path = '';
-							} else if (normalizedName === 'index' && !file.path) {
-								file.path += '/';
-							} else if (normalizedName !== 'index') {
-								if (isDynamic) {
-									file.path += `/:${normalizedName}`;
-									if (isCatchAll) file.path += '(.*)';
-								} else {
-									file.path += `/${normalizedPath}`;
-								}
-							}
-						}
-						ext = extensionRE.exec(file.fullPath);
-						file.ext = ext[1];
-						if (file.path == '/notfound') file.path = 'notfound';
-						file.isHandler = ['js', 'ts'].includes(file.ext);
-
-						let r = {
-							name: file.name,
-							route: file.path,
-						}
-						let path = relativePath(file.fullPath);
-						if (!file.isHandler) {
-							view = file.name + '.html'
-
-							if (file.ext == 'html') {
-								fs.copyFile(
-									file.fullPath,
-									'./public/pages/' + view,
-									(err) => {
-										if (err) throw err;
-									}
-								);
-							} else if (file.ext == 'md') {
-								let md = fs.readFileSync(path, 'utf-8');
-								let html = tf(md, MarkdownIt().use(Prism)).code;
-								fs.writeFileSync('./public/pages/'+view, html)
-							}
-
-							r.view = view
-						} else {
-							let tsModule = null;
-							if (file.ext == 'ts') {
-								let data = fs.readFileSync(path, 'utf-8');
-								let js = ts.transpileModule(data, {
-									compilerOptions: {
-										module: ts.ModuleKind.ES2015,
-									},
-								});
-								tsModule =
-									'data:text/javascript;base64,' +
-									Buffer.from(js.outputText).toString('base64');
-							}
-							let handlerFunction = (
-								await import(tsModule ?? path)
-							).default;
-							r.handler = handlerFunction
-								.toString()
-								.replace(/\r?\n|\r|\s/g, '');
-						}
-						let index = generatedRoutes.findIndex((e) => e.name == r.name);
-						if (index != -1) {
-							r = {...r, ...generatedRoutes[index]}
-							generatedRoutes[index] = r;
-						} else generatedRoutes.push(r);
-					}
-
+					generatedRoutes = await generateRoutes();
+					let r = JSON.stringify(generatedRoutes);
+					return `
+					export const addRoutes = () => {
+						const r = ${r};
+						let t = [];
+						r.forEach((route) => {
+							let template = document.createElement('template');
+							template.setAttribute('x-route', route.route);
+							if (route.view) template.setAttribute('x-view', route.view);
+							if (route.handler) template.setAttribute('x-handler', route.handler);
+							t.push(template);
+						});
+						document.querySelector('[x-router]').append(...t);
+					};
+					`;
 				}
-				let r = JSON.stringify(generatedRoutes)
-				console.log({r});
-				console.log(generatedRoutes)
-				return `export const routes = ${r}`;
+			}
+			if (id === virtualUpdateId) {
+				if (import.meta?.env?.mode == 'build') {console.log('prod'); return '';}
+				return `
+				const socketProtocol = location.protocol === 'https:' ? 'wss' : 'ws';
+				const socketHost = \`\${location.hostname}:3000\`;
+				const socket = new WebSocket(\`\${socketProtocol}://\${socketHost}\`, 'vite-hmr');
+
+				// Listen for messages
+				socket.addEventListener('message', async ({ data }) => {
+					handleMessage(JSON.parse(data));
+					console.log(data)
+				});
+				
+				async function handleMessage(payload) {
+					switch (payload.type) {
+						case 'full-reload':
+							if (
+								payload.path.startsWith('/src/pages') ||
+								payload.path.startsWith('/src/layouts')
+							) {
+								console.log('Rapide: reloading view!')
+								window.PineconeRouter.navigate(window.PineconeRouter.currentContext.path);
+							}
+							break;
+					}
+				}`;
 			}
 		},
 		handleHotUpdate({ file, server }) {
-			let parts = file.split('/');
-			if (parts.includes('pages') && generatedRoutes != null) {
-				generatedRoutes = null;
-				return server.ws.send({
-					type: 'full-reload',
+			if (
+				(file.includes('src/pages') || file.includes('src/layouts')) &&
+				generatedRoutes != null
+			) {
+				generateRoutes();
+				return [];
+			}
+			
+			// if (file.includes('public/pages')) {
+			// 	return null;
+			// }
+			if (file.includes('.md')) {
+				server.ws.send({
+					type: 'full-reload'
 				});
 			}
+			return [];
 		},
 	};
 };

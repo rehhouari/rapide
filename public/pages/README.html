@@ -1,0 +1,28 @@
+<h2>File-based Routing</h2>
+<p>Routes will be auto-generated for files in this dir with the same file structure.
+Check out <a href="https://github.com/rehhouari/vite-plugin-pinecone"><code>vite-plugin-pinecone</code></a> for more details.</p>
+<h3>Formats</h3>
+<p>HTML, Markdown, Javascript, Typescript.</p>
+<h3>Naming</h3>
+<ul>
+<li>Name the files the way you'd name routes in <a href="https://github.com/pinecone-router/router#route-matching">Pinecone Router</a>.</li>
+</ul>
+<h3>Views</h3>
+<p>Views are HTML and/or Markdown files (HTML views can also have Alpine components in them.)
+Markdown will be compiled to HTML with <code>markdown-it</code> and syntax highlighting is done with <code>Prism</code></p>
+<h3>Handlers</h3>
+<p>Handlers are Typescript or Javascript files that export a single default function which take <code>Context</code> as a parameter.</p>
+<pre><code class="language-ts">import type { Context } from &quot;pinecone-router&quot;;
+
+export default (context: Context) =&gt; {
+	// do something
+}
+</code></pre>
+<h4>Path Aliasing</h4>
+<p><code>~/</code> is aliased to <code>./src/</code> folder.</p>
+<p>For example, instead of having</p>
+<pre><code class="language-ts">import { isDark } from '../../../../logic'
+</code></pre>
+<p>now, you can use</p>
+<pre><code class="language-ts">import { isDark } from '~/logic'
+</code></pre>

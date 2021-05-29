@@ -34,11 +34,9 @@ export default () => {
 	window.addEventListener('locale-change', checkRTL);
 };
 
-// Locales of RTL Languages you support (arabic, farsi, hebrew..)
-const supportedRtlLanguages = ['ara'];
-
 function checkRTL() {
-	if (supportedRtlLanguages.includes(window.AlpineI18n.locale)) {
+	// ts-ignore
+	if (window.AlpineI18n.t('isRTL') == true) {
 		document.body.setAttribute('dir', 'rtl');
 	} else {
 		document.body.removeAttribute('dir');

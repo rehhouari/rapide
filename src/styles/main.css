@@ -1,5 +1,42 @@
-/* This CSS file is proccessed by WindiCSS*/
+@import './markdown.css';
+
+[x-cloak] {
+	display: none;
+}
+
+@layer base {
+	a {
+		@apply underline
+	}
+	h1 {
+		@apply text-4xl font-bold;
+	}
+	h2 {
+		@apply text-3xl font-bold;
+	}
+	h3 {
+		@apply text-2xl font-bold;
+	}
+	h4 {
+		@apply text-xl font-bold;
+	}
+	h5 {
+		@apply text-lg font-bold;
+	}
+	h6 {
+		@apply text-md font-bold;
+	}
+}
 
 .card {
 	@apply rounded-2xl px-4 py-6 flex flex-col space-y-4;
+}
+
+.btn {
+	@apply px-4 py-1 rounded inline-block bg-teal-600 text-white cursor-pointer hover:bg-teal-700 disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50;
+}
+
+.icon-btn {
+	@apply inline-block cursor-pointer select-none opacity-75 transition duration-200 ease-in-out hover:opacity-100 hover:text-teal-600;
+	font-size: 0.9em;
 }

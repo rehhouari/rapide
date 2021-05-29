@@ -1,7 +1,11 @@
 ## File-based Routing
 
-Routes will be auto-generated for html & js/ts files in this dir with the same file structure.
+Routes will be auto-generated for files in this dir with the same file structure.
 Check out [`vite-plugin-pinecone`](https://github.com/rehhouari/vite-plugin-pinecone) for more details.
+
+### Formats
+
+HTML, Markdown, Javascript, Typescript.
 
 ### Naming
 
@@ -9,12 +13,14 @@ Check out [`vite-plugin-pinecone`](https://github.com/rehhouari/vite-plugin-pine
 
 ### Views
 
-Views are HTML files that can also have Alpine components in them.
-
+Views are HTML and/or Markdown files (HTML views can also have Alpine components in them.)
+They'll be passed to [Frontmatter](https://github.com/jxson/front-matter) which you can use to specify the `layout` for the view.
+Markdown will be compiled to HTML with `markdown-it` and syntax highlighting is done with `Prism`
 
 ### Handlers
 
 Handlers are Typescript or Javascript files that export a single default function which take `Context` as a parameter.
+(You can have both a view and a handler for the same route)
 
 ```ts
 import type { Context } from "pinecone-router";
@@ -31,11 +37,11 @@ export default (context: Context) => {
 For example, instead of having
 
 ```ts
-import { isDark } from '../../../../logic'
+import { isDark } from '../../../../modules'
 ```
 
 now, you can use
 
 ```ts
-import { isDark } from '~/logic'
+import { isDark } from '~/modules'
 ```

@@ -103,19 +103,14 @@
 	<body>
 		<div x-data="router()" x-router></div>
 		<div
-			class="flex flex-col max-w-full h-screen dark:bg-warm-gray-900 text-gray-700 dark:text-gray-200 transition-colors"
+			class="flex flex-col text-sm max-w-full h-screen dark:bg-warm-gray-900 text-gray-700 dark:text-gray-200 transition-colors"
 		>
-			<a
-				class="flex px-4 items-center justify-center no-underline mt-4 text-3xl italic font-bold"
-				href="/"
-			>
-				Rapide
-			</a>
-			<main class="py-4 max-w-full text-center" id="app"><!--root--></main>
+			<main class="py-4 w-112 max-w-full mx-auto mt-5" id="app"><!--root--></main>
 			<nav
 				class="flex justify-center space-x-4 text-2xl mt-6"
 				dir="ltr"
 				x-data
+				x-cloak
 			>
 				<a aria-current="page" href="/" :title="$t('home')">
 					<span class="iconify" data-icon="carbon:campsite"></span>

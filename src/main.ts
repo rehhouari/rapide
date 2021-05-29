@@ -1,8 +1,10 @@
 import 'virtual:windi.css';
 import 'virtual:windi-devtools';
+import 'virtual:pinecone-update'
+import { addRoutes } from 'virtual:pinecone-routes';
 import '~/styles/main.css';
 import '@purge-icons/generated';
-import { default as router, addRoutes } from '~/core/router';
+import { default as router } from '~/core/router';
 
 router();
 
