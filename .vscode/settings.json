@@ -1,16 +1,30 @@
 {
 	"cSpell.words": [
-		"Initializeds",
-		"Rapide",
-		"Vercel",
-		"leanadmin",
-		"nprogress",
-		"ryangjchandler"
-	],
+    "Initializeds",
+    "Rapide",
+    "Vercel",
+    "antfu",
+    "attributify",
+    "iconify",
+    "leanadmin",
+    "linkify",
+    "nprogress",
+    "rapide's",
+    "ryangjchandler",
+    "vitesse"
+  ],
 	"i18n-ally.localesPaths": ["locales"],
 	"i18n-ally.enabledFrameworks": ["custom"],
 	"i18n-ally.keystyle": "nested",
 	"files.associations": {
 		"*.css": "postcss"
-	}
+	},
+	"eslint.format.enable": true,
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "dbaeumer.vscode-eslint",
+	"eslint.packageManager": "pnpm",
+	"[typescript]": {
+		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+	},
+	"editor.tabSize": 2
 }

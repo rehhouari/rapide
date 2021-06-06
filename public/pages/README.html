@@ -1,0 +1,41 @@
+<h2>File-based Routing</h2>
+<p>Routes will be auto-generated for HTML &amp; Markdown files in this dir with the same file structure.</p>
+<p><a href="https://github.com/rehhouari/vite-plugin-pinecone-pages"><code>vite-plugin-pinecone-pages</code></a> is used for this.</p>
+<h3>Naming</h3>
+<p>Name the files the way you’d name routes in <a href="https://github.com/pinecone-router/router#route-matching">Pinecone Router</a>.</p>
+<h3>Views</h3>
+<p>Views are HTML and/or Markdown files.</p>
+<p>They’ll be passed to <a href="https://github.com/jxson/front-matter">Frontmatter</a> which you can use to specify the <code>layout</code> and <code>handlers</code>, and other data for the view.</p>
+<p>Markdown will be compiled to HTML with <code>markdown-it</code> and syntax highlighting is done with <code>Prism</code>, and URLs automatically converted to anchors with <code>markdown-it-anchor</code>.</p>
+<blockquote>
+<p>You can disable Markdown Support in <code>vite.config.ts</code>, dependencies are not bundled with the plugin but instead installed in the project so you can remove them</p>
+</blockquote>
+<h3>Components in Views</h3>
+<p>For HTML views you can simply wrap things in Alpine Components.
+But you can also do it with FrontMatter!
+This allow you to use things like i18n in Markdown (see <a href="./about.md">about.md</a>).</p>
+<pre class="language-yaml"><code class="language-yaml"><span class="token punctuation">---</span>
+<span class="token key atrule">wrapInComponent</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+<span class="token punctuation">---</span>
+</code></pre>
+<p>This will result in:</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">x-data</span><span class="token punctuation">></span></span>
+	your content
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>to specify a named component simply replace <code>true</code> with the components name:</p>
+<pre class="language-yaml"><code class="language-yaml"><span class="token punctuation">---</span>
+<span class="token key atrule">wrapInComponent</span><span class="token punctuation">:</span> name
+<span class="token punctuation">---</span>
+</code></pre>
+<h3>Handlers</h3>
+<p>Define handlers in <code>src/core/router.ts</code> then reference them from the <strong>view</strong> or <strong>layout</strong> with FrontMatter like this:</p>
+<pre class="language-html"><code class="language-html">---
+handlers: [handler, anotherhandler]
+---
+
+<span class="token comment">&lt;!--HTML/MARKDOWN HERE--></span>
+</code></pre>
+<blockquote>
+<p>Handlers are executed in order before the view is loaded.</p>
+</blockquote>

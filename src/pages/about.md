@@ -1,17 +1,18 @@
 ---
 title: About
+wrapInComponent: true
 ---
 
-<div class="text-center mb-3">
-	<span class="iconify text-4xl" data-icon="carbon:dicom-overlay"></span>
-	<h3>About</h3>
+<div class="flex text-center flex flex-col justify-center items-center mb-5">
+	<span class="iconify text-40px justify-center" data-icon="carbon:dicom-overlay"></span>
+	<h4 x-text="$t('about')">About</h4>
 </div>
 
-[Rapide](https://github.com/rehhouari/rapide) is an opinionated [Alpine.js](https://github.com/vitejs/vite) starter template for [Alpine.js](https://github.com/alpinejs/alpine) made by [@rehhouari](https://github.com/rehhouari) for mocking apps swiftly. It's inspired by [Vitesse](https://github.com/antfu/vitesse) and thus it also have: **file-based routing**, **components auto importing**, **markdown support**, [I18n](https://github.com/rehhouari/alpinejs-i18n), PWA and uses **WindiCSS** (next-gen TailwindCSS compiler) for UI.
+[Rapide](https://github.com/rehhouari/rapide) is an opinionated [Alpine.js](https://github.com/vitejs/vite) starter template made by [@rehhouari](https://github.com/rehhouari) for mocking apps swiftly. It's inspired by [Vitesse](https://github.com/antfu/vitesse) and thus it also have: **file-based routing**, **components auto importing**, **markdown support**, [I18n](https://github.com/rehhouari/alpinejs-i18n), PWA and uses **WindiCSS** (next-gen TailwindCSS compiler) for UI.
 
 ```js
 // syntax highlighting example
-function vitesse() {
+function rapide() {
 	const foo = 'bar';
 	console.log(foo);
 }

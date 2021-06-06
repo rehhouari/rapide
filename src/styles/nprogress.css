@@ -3,7 +3,7 @@
 	--color: #29d
 }
 
-body.dark {
+:root.dark {
 	// override progress bar color in dark mode
 	--color: gray
 }

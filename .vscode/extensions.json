@@ -1,8 +1,10 @@
 {
 	"recommendations": [
 		"lokalise.i18n-ally",
-		"esbenp.prettier-vscode",
 		"voorjaar.windicss-intellisense",
-		"adrianwilczynski.alpine-js-intellisense"
+		"adrianwilczynski.alpine-js-intellisense",
+		"dbaeumer.vscode-eslint",
+		"antfu.iconify",
+		"antfu.vite"
 	]
 }

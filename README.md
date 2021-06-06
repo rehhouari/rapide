@@ -1,14 +1,17 @@
-# Rapide <sup><em>(fast)</em></sup>
+# <i>Rapide</i> <sup><em>(fast)</em></sup> :zap: :mountain_snow: :evergreen_tree:
 
-Organized Alpine.js starter template, with client-side routing, PWA, :zap: :mountain_snow: :evergreen_tree:
+<p align='center'>
+Opinionated Alpine.js starter template, with file based routing, PWA, components auto-loading, and more!
 
-Fast Alpine.js web app mocking with <b>Rapide</b><sup><em>(fast)</em></sup><br>
+<p align='center'>
+Mock up <i>Rapide</i> <sup><em>(fast)</em></sup> Alpine.js web apps.<br>
+</p>
+
 <br>
 
 <p align='center'>
 <a href="https://rapide.vercel.app/">Live Demo</a>
 </p>
-
 <br>
 
 ## Features
@@ -17,21 +20,21 @@ Fast Alpine.js web app mocking with <b>Rapide</b><sup><em>(fast)</em></sup><br>
 
 -   📦 [Components auto importing](./src/components)
 
--   🗂 [File based routing](./src/pages)
+-   🗂 [File based routing](./src/pages) & [layout system](./src/layouts). on top of [Pinecone Router](https://gihtub.com/pinecone-router/router) + smart hot-reloading!
 
--   🛺 Add functionality with auto-loaded [modules](./src/modules)
+-   🛺  Add functionality with auto-loaded [modules](./src/modules)
 
--   📑 [Organized file structure](./src/)
+-   📑 [Organized file structure](./src/) with documentation for each part.
 
--   📲 [PWA](https://github.com/antfu/vite-plugin-pwa)
+-   📲 Zero-config [PWA](https://github.com/antfu/vite-plugin-pwa)
 
 -   🎨 [Windi CSS](https://github.com/windicss/windicss) - next generation utility-first CSS framework
 
 -   😃 [Use icons from any icon sets, with no compromise](./index.html#L120)
 
--   🌍 [I18n ready](./locales) with [VSCode extension support](#dev-tools)
+-   🌍 [I18n ready](./locales) with pre-configured [VSCode extension support](#dev-tools)
 
--   🗒 [Markdown Support](https://github.com/antfu/vite-plugin-md)
+-   🗒 [Markdown Support](./src/pages), optional and can be removed without bloat left.
 
 -   🔥 Central application store with [Spruce](./src/store)
 
@@ -56,42 +59,34 @@ Fast Alpine.js web app mocking with <b>Rapide</b><sup><em>(fast)</em></sup><br>
 ### Plugins
 
 -   [Pinecone Router](https://github.com/pinecone-router/router)
-    -   [`pinecone-router-middleware-views`](https://github.com/hannoeru/vite-plugin-pages) - load views from files
+    -   [`pinecone-router-middleware-views`](https://github.com/pinecone-router/middleware-views) - load views from files
+    -   [`vite-plugin-pinecone-pages`](https://github.com/rehhouari/vite-plugin-pinecone-pages) - file-based routing for Pinecone Router with (Optional, default: on) Markdown support, layouts, and smart reloading-no more full-reloads for view changes!
+		-    [`markdown-it-prism`](https://github.com/jGleitz/markdown-it-prism) - [Prism](https://prismjs.com/) for syntax highlighting
+    	-   [`prism-theme-vars`](https://github.com/antfu/prism-theme-vars) - customizable Prism.js theme using CSS variables
 -   [`vite-plugin-pwa`](https://github.com/antfu/vite-plugin-pwa) - PWA
 -   [`vite-plugin-windicss`](https://github.com/antfu/vite-plugin-windicss) - WindiCSS support
--   [`vite-plugin-md`](https://github.com/antfu/vite-plugin-md) - Markdown as components / components in Markdown
-    -   [`markdown-it-prism`](https://github.com/jGleitz/markdown-it-prism) - [Prism](https://prismjs.com/) for syntax highlighting
-    -   [`prism-theme-vars`](https://github.com/antfu/prism-theme-vars) - customizable Prism.js theme using CSS variables
--   [Alpine I18n](https://github.com/rehhouari/alpinejs-i18n) - Internationalization, organized in local YAML files with [VSCode Extension support](#dev-tools)
--   [Alpine Magic Helpers](https://github.com/alpine-collective/alpine-magic-helper), [x-else](https://github.com/ryangjchandler/x-else), [alpine-clipboard](https://github.com/ryangjchandler/alpine-clipboard), [alpine-toggle](https://github.com/ryangjchandler/alpine-toggle) - collection of useful magic helpers for Alpine.js, with TypeScript Support!.
+-   [Alpine I18n](https://github.com/rehhouari/alpinejs-i18n) - Internationalization, organized in local YAML files with [VSCode Extension support](#dev-tools)!
+-   [Alpine Magic Helpers](https://github.com/alpine-collective/alpine-magic-helper), [x-else](https://github.com/ryangjchandler/x-else), [alpine-clipboard](https://github.com/ryangjchandler/alpine-clipboard), [alpine-toggle](https://github.com/ryangjchandler/alpine-toggle) - collection of useful magic helpers for Alpine.js, with TypeScript Support in components!.
 -   [Spruce](./src/store) - Central store for Alpine.js components, supporting custom storage drivers, meaning you can easily sync data.
 -   [NProgress](./src/modules/nprogress.js) - Beautiful progress bar, with [customizable looks](./src/styles/nprogress.css)
 
 ### Coding Style
 
--   Use Composition API with [`<script setup>` SFC syntax](https://github.com/vuejs/rfcs/pull/227)
 -   [ESLint](https://eslint.org/) with [@antfu/eslint-config](https://github.com/antfu/eslint-config), single quotes, no semi.
 
 ### Dev tools
 
--   [TypeScript](https://www.typescriptlang.org/)
--   [pnpm](https://pnpm.js.org/) - fast, disk space efficient package manager
--   [Netlify](https://www.netlify.com/), [vercel](https://vercel.com/) - zero-config deployment
 -   [VS Code Extensions](./.vscode/extensions.json)
     -   [Alpine.js IntelliSense](https://marketplace.visualstudio.com/items?itemName=adrianwilczynski.alpine-js-intellisense)
     -   [Vite](https://marketplace.visualstudio.com/items?itemName=antfu.vite) - Fire up Vite server automatically
     -   [Iconify IntelliSense](https://marketplace.visualstudio.com/items?itemName=antfu.iconify) - Icon inline display and autocomplete
     -   [i18n Ally](https://marketplace.visualstudio.com/items?itemName=lokalise.i18n-ally) - All in one i18n support
     -   [Windi CSS Intellisense](https://marketplace.visualstudio.com/items?itemName=voorjaar.windicss-intellisense) - IDE support for Windi CSS
-    -   [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-
-## Variations
-
-As this template is strongly opinionated, the following provides a curated list for community maintained variations with different preferences and feature sets. Check them out as well. PR to add yours are also welcome!
-
--   [vitesse-addons](https://github.com/JohnCampionJr/vitesse-addons) by [@johncampionjr](https://github.com/johncampionjr) - additional options for integrations, including [Prettier](https://prettier.io) and [Storybook](https://storybook.js.org)
--   [vitesse-ssr-template](https://github.com/frandiox/vitesse-ssr-template) by [@frandiox](https://github.com/frandiox) - Vitesse with SSR
--   [vitesse-nuxt](https://github.com/antfu/vitesse-nuxt) - Vitesse for Nuxt 2 (expiremental)
+    -   [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+-   [TypeScript](https://www.typescriptlang.org/)
+-   [pnpm](https://pnpm.js.org/) - fast, disk space efficient package manager
+-   [Netlify](https://www.netlify.com/), [Vercel](https://vercel.com/) - zero-config deployment
+-   [Icones](https://icones.netlify.app/) - view and explore all icons you can use in your app.  
 
 ## Try it now!
 
@@ -111,14 +106,14 @@ pnpm i # If you don't have pnpm installed, run: npm install -g pnpm
 
 ## Checklist
 
-When you use this template, try follow the checklist to update your info properly
+When you use this template, try to follow this checklist to update your info properly
 
 -   [ ] Rename `name` field in `package.json`
 -   [ ] Change the author name in `LICENSE`
 -   [ ] Change the title in `index.html`
 -   [ ] Change the icons in `public/images/icons`
 -   [ ] Remove the `.github` folder which contains the funding info
--   [ ] Clean up the READMEs and remove routes
+-   [ ] Clean up the READMEs and remove routes & handlers
 
 And, enjoy :)
 
@@ -140,14 +135,16 @@ To build the App, run
 pnpm build
 ```
 
-And you will see the generated file in `dist` that ready to be served.
+And you will see the generated file in `dist` that ready to be served (test it with `pnpm serve`).
 
 ### Deploy on Netlify
 
 Go to [Netlify](https://app.netlify.com/start) and select your clone, `OK` along the way, and your App will be live in a minute.
 
+Same for Vercel.
+
 ## Why
 
-I have created several Vite apps recently. Setting the configs up is kinda the bottleneck for me to make the ideas simply come true within a very short time.
+This template is heavily inspired by and based on [@antfu](https://github.com/antfu)'s [Vitesse](https://github.com/antfu/vitesse) for Vue. I wanted to bring a similar development experience to Alpine.js and show how it can be used to make web apps as well and not just as a JQuery alternative. So I been building plugins for Alpine.js & Vite to bridge the gap that made it difficult to accomplish that.
 
-So I made this starter template for myself to create apps more easily, along with some good practices that I have learned from making those apps. It's strongly opinionated, but feel free to tweak it or even maintains your own forks. [(see community maintained variation forks)](#variations)
+Before I found Vitesse, I've based this on [@ryangjchandler](https://github.com/ryangjchandler)'s experiment on code organization. When I saw it I felt it has potential, and I wanted to make it more accessible. hopefully I did now.

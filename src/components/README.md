@@ -1,15 +1,15 @@
 ## Components
 
-Components in this dir will be auto-registered, named & titled based on its class name. 
+Components in this dir will be auto-registered, named & titled based on its file name. 
 
 ### Creating a component
 
 Place a `.ts` or `.js` file with the following template, it will be installed automatically.
 
 ```ts
-import { AlpineComponentData } from '~/types';
+import { AlpineComponent } from 'alpine-typescript-extras'
 
-export default class name extends AlpineComponentData {
+export default class extends AlpineComponent {
 	// your component's logic here
 }
 
@@ -17,7 +17,7 @@ export default class name extends AlpineComponentData {
 
 ### Usage in HTML
 
-For example, if the component's class name is `name`:
+For example, if the component's file name is `name.(ts|js)`:
 
 ```html
 <div x-data="Alpine.component('name')()">

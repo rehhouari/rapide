@@ -1,0 +1,57 @@
+[content~="no"] {
+  content: "no";
+}
+[content~="#ffffff"] {
+  content: "#ffffff";
+}
+[content~="/images/icons/icon-144x144.png"] {
+  content: "/images/icons/icon-144x144.png";
+}
+[content~="{app_name}"] {
+  content: "{app_name}";
+}
+[content~="default"] {
+  content: "";
+}
+[content~="yes"] {
+  content: "yes";
+}
+[content~="{social_description}"] {
+  content: "{social_description}";
+}
+[content~="{social_site_name}"] {
+  content: "{social_site_name}";
+}
+[content~="{social_url}"] {
+  content: "{social_url}";
+}
+[content~="{social_title}"] {
+  content: "{social_title}";
+}
+[content~="/images/social-image.png"] {
+  content: "/images/social-image.png";
+}
+[content~="{social_username}"] {
+  content: "{social_username}";
+}
+[content~="summary"] {
+  content: "summary";
+}
+[content~="Rapide"] {
+  content: "Rapide";
+}
+[content~="{author}"] {
+  content: "{author}";
+}
+[content~="{description}"] {
+  content: "{description}";
+}
+[content~="width=device-width, "] {
+  content: "width=device-width,";
+}
+[content~="initial-scale=1"] {
+  content: "initial-scale=1";
+}
+[content~="IE=edge, chrome=1"] {
+  content: "IE=edge,chrome=1";
+}
