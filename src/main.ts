@@ -7,8 +7,6 @@ import '@purge-icons/generated'
 import { component, addTitles } from '@leanadmin/alpine-typescript'
 import { router } from '~/core/router'
 
-import '~/shims.d.ts'
-
 router()
 window.addRoutes = addRoutes
 

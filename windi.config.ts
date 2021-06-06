@@ -3,7 +3,7 @@ import typography from 'windicss/plugin/typography'
 
 export default defineConfig({
   darkMode: 'class',
-  attributify: false,
+  attributify: true,
   plugins: [
     typography(
       {
