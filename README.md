@@ -14,6 +14,17 @@ Mock up <i>Rapide</i> <sup><em>(fast)</em></sup> Alpine.js web apps.<br>
 </p>
 <br>
 
+## NOTICE:
+
+look, i **can't** work on it now, _sadly_. it works but you need to make some changes, undo last commit for it to run, or just remove the `attributify` line from `windi.config.ts`.
+
+there is an issue when running the build command as well, i forgot what caused it, but it's related to the [vite plugin](https://github.com/pinecone-router/vite-plugin-pinecone-pages) likely.
+
+it have potential, or had. it came make spinning up a web app with alpine **v2** really quick but there are some problems. i tried documeting everything but the [vite plugin](https://github.com/pinecone-router/vite-plugin-pinecone-pages) isn't documented.
+
+I don't think anyone would bother but if you're bored feel free, I'll try to accept pull requests too, and it's MIT so you can fork all parts i made (router, i18n, vite plugin) and make a better template. good luck and sorry.
+
+
 ## Features
 
 -   ⚡️ [Alpine.js](https://github.com/alpinejs/alpine), [Vite 2](https://github.com/vitejs/vite), [pnpm](https://pnpm.js.org/), [ESBuild](https://github.com/evanw/esbuild) - born with fastness
