@@ -16,9 +16,9 @@ Mock up <i>Rapide</i> <sup><em>(fast)</em></sup> Alpine.js web apps.<br>
 
 ## NOTICE:
 
-look, i **can't** work on it now, _sadly_. it works but you need to make some changes, undo last commit for it to run, or just remove the `attributify` line from `windi.config.ts`.
+look, i **can't** work on it now, _sadly_. it works but you need to make some changes:
 
-there is an issue when running the build command as well, i forgot what caused it, but it's related to the [vite plugin](https://github.com/pinecone-router/vite-plugin-pinecone-pages) likely.
+* roll back to this commit: https://github.com/rehhouari/rapide/commit/05b0e513949747b0fc645e3ea65c9d4f4d12630b
 
 it have potential, or had. it came make spinning up a web app with alpine **v2** really quick but there are some problems. i tried documeting everything but the [vite plugin](https://github.com/pinecone-router/vite-plugin-pinecone-pages) isn't documented.
 
