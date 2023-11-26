@@ -16,8 +16,9 @@ Mock up <i>Rapide</i> <sup><em>(fast)</em></sup> Alpine.js web apps.<br>
 
 ## NOTICE:
 
-look, i **can't** work on it now, _sadly_. it works but you need to make some changes:
+Update: check out [astro.build](https://astro.build) instead!
 
+it works but you need to make some changes:
 * roll back to this commit: https://github.com/rehhouari/rapide/commit/05b0e513949747b0fc645e3ea65c9d4f4d12630b
 
 it have potential, or had. it came make spinning up a web app with alpine **v2** really quick but there are some problems. i tried documeting everything but the [vite plugin](https://github.com/pinecone-router/vite-plugin-pinecone-pages) isn't documented.
